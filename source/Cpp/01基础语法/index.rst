@@ -4,5 +4,5 @@
 .. toctree::
   :maxdepth: 1
 
-  01初识c++
+  01初识
   02注释
