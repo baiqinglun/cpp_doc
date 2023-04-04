@@ -10,7 +10,7 @@ Welcome to ddemo's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   Cpp/index
+   docs/index
 
 Indices and tables
 ==================
