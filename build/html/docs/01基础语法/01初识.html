@@ -47,6 +47,10 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">基础语法</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">初识</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02%E6%B3%A8%E9%87%8A.html">注释</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03%E5%8F%98%E9%87%8F.html">变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04%E5%B8%B8%E9%87%8F.html">常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05%E5%85%B3%E9%94%AE%E5%AD%97.html">关键字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06%E6%A0%87%E8%AF%86%E7%AC%A6.html">标识符</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../02%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">数据结构</a><ul>
@@ -86,10 +90,33 @@
              
   <section id="id1">
 <h1>初识<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
-<p>初始</p>
-<section id="id2">
-<h2>耳机标题<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
-</section>
+<ol class="simple">
+<li><p>命名空间，可以直接使用<code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">std;</span></code>语句，当然也可以定义命名空间；</p></li>
+<li><p>:: 表示作用域；</p></li>
+<li><p>std::cin 表示名为cin定义在std的命名空间内（namespace）；</p></li>
+</ol>
+<p><strong>分别定义命名空间</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	 </span><span class="c1">//：：表示作用域</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;enter two numbers:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span><span class="w">  </span><span class="c1">//名字cout、cin和endl是定义在std的命名空间内（namespace）</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;the sum of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; and &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>using namespace std</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="n">using</span><span class="w"> </span><span class="n">namespace</span><span class="w"> </span><span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 
 

@@ -1,5 +1,30 @@
 # 初识
 
-初始
+1. 命名空间，可以直接使用`using namespace std;`语句，当然也可以定义命名空间；
+2. :: 表示作用域；
+3. std::cin 表示名为cin定义在std的命名空间内（namespace）；
 
-## 耳机标题
+**分别定义命名空间**
+```c
+int main() {
+	 //：：表示作用域
+	std::cout << "enter two numbers:" << std::endl;
+	int v1 = 0, v2 = 0;
+	std::cin >> v1 >> v2;  //名字cout、cin和endl是定义在std的命名空间内（namespace）
+	std::cout << "the sum of " << v1 << " and " << v2 << " is " << v1 + v2<< std::endl;
+	return 0;
+}
+```
+
+**using namespace std**
+
+```c
+#include <iostream>
+using namespace std;
+
+int main() {
+	cout << "Hello World!" << endl;
+	system("pause");
+	return 0;
+}
+```
