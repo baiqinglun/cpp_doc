@@ -4,4 +4,4 @@
 .. toctree::
   :maxdepth: 1
 
-  1.1 初识c++
+  1.1初识c++
