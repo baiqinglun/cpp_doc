@@ -1,0 +1,27 @@
+# 结构体指针
+1. 指向结构体`struct Student* p = &s;`,其中`struct`可以省略；
+2. 访问结构体指针访问`p->name`;
+
+```c
+#include<iostream>
+using namespace std;
+
+//1.定义结构体
+struct Student {
+	string name;
+	int age;
+	double score;
+};
+
+
+int main() {
+	//2.创建结构体变量
+	struct Student s = {"张三",18,80};
+
+	//3.通过指针指向结构体变量
+	struct Student* p = &s;
+
+	//4.通过指针访问结构体变量
+	cout << p->name <<"\t" << p->age<<"\t" << p->score << endl;
+}
+```

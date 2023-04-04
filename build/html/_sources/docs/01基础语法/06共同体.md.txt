@@ -1,0 +1,33 @@
+# 共同体
+1. 共同体占用的内存大小是成员占用内存最大的大小；（内存对齐）
+2. 全部成员使用一块内存；
+
+```c++
+#include<iostream>
+using std::string; using std::cout; using std::endl;
+
+int main()
+{
+	union MyUnion
+	{
+		int a; 
+		double b;
+		char c[21];
+	};
+	MyUnion data;
+
+	// 占用大小
+	cout << "内存占用大小=" << sizeof(data) << endl; //24
+
+	cout << "内存地址data.a=" << (void*) &data.a << endl;
+	cout << "内存地址data.b=" << (void*) &data.b << endl;
+	cout << "内存地址data.c=" << (void*) &data.c << endl;
+
+	system("pause");
+	return 0;
+}
+```
+
+![image-20221023115211935](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221023115211935.png)
+
+

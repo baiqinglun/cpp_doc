@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>关联容器 &mdash; ddemo v1.0 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="哈希表" href="05%E5%93%88%E5%B8%8C%E8%A1%A8.html" />
+    <link rel="prev" title="list" href="03List.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++知识</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/index.html">基础语法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/01%E5%8F%98%E9%87%8F%E5%B8%B8%E9%87%8F.html">变量与常量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/02%E5%85%B3%E9%94%AE%E5%AD%97.html">关键字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/03%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html">数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/04%E8%BF%90%E7%AE%97%E7%AC%A6.html">运算符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/05%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B.html">程序流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/07%E6%9E%9A%E4%B8%BE.html">枚举</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02%E5%BC%95%E7%94%A8/index.html">引用</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../03%E6%8C%87%E9%92%88/index.html">指针</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../03%E6%8C%87%E9%92%88/01%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.html">基本用法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/index.html">函数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/01%E5%87%BD%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC.html">函数默认值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/02%E5%87%BD%E6%95%B0%E5%8D%A0%E4%BD%8D%E5%8F%82%E6%95%B0.html">函数占位参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/03%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD.html">函数的重载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/04%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html">函数重载注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/05%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0.html">内联函数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/index.html">结构体</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/01%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html">基本使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/02%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84.html">结构体数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/03%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88.html">结构体指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/04%E7%BB%93%E6%9E%84%E4%BD%93%E5%B5%8C%E5%A5%97%E7%BB%93%E6%9E%84%E4%BD%93.html">结构体嵌套结构体</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/05%E7%BB%93%E6%9E%84%E4%BD%93%E5%81%9A%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0.html">结构体做函数参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/06%E7%BB%93%E6%9E%84%E4%BD%93const.html">结构体const</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/07%E6%A1%88%E4%BE%8B.html">结构体案例1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/07%E6%A1%88%E4%BE%8B.html#id2">2、结构体案例2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/index.html">类</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/01%E5%B0%81%E8%A3%85.html">封装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/02%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90.html">访问权限</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/03struct%E5%92%8Cclass.html">struct和class区别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/04%E6%88%90%E5%91%98%E5%B1%9E%E6%80%A7%E7%A7%81%E6%9C%89.html">成员属性私有</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/05%E6%A1%88%E4%BE%8B.html">案例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/06%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84.html">构造和析构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/07%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D.html">深拷贝与浅拷贝</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/08%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8.html">初始化列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/09%E7%B1%BB%E4%BD%9C%E4%B8%BA%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.html">类作为成员变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/10%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.html">类静态成员变量</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/11%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html">静态成员函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/12%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88.html">对象模型和this指针</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/13%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html">运算符重载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/14%E7%BB%A7%E6%89%BF.html">继承</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06%E7%B1%BB/15%E5%A4%9A%E6%80%81.html">多态</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">容器存储</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01%E6%95%B0%E7%BB%84.html">数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02Vector.html">Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03List.html">list</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">关联容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05%E5%93%88%E5%B8%8C%E8%A1%A8.html">哈希表</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">类型转换</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/01%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.html">自动类型转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/02%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0.html">转化函数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../09%E6%A8%A1%E6%9D%BF/index.html">模板</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../09%E6%A8%A1%E6%9D%BF/01%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF.html">函数模板</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09%E6%A8%A1%E6%9D%BF/02%E7%B1%BB%E6%A8%A1%E6%9D%BF.html">类模板</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../10%E5%85%B3%E9%94%AE%E5%AD%97/index.html">关键字</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../10%E5%85%B3%E9%94%AE%E5%AD%97/01friend.html">关键字friend</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/index.html">内存分配</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/01%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.html">内存分配</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/02%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E5%89%8D.html">程序运行前</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/03%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E5%90%8E.html">程序运行后</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/04new%E5%85%B3%E9%94%AE%E5%AD%97.html">new关键字</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/05%E5%A0%86%E5%92%8C%E6%A1%9F%E6%AF%94%E8%BE%83.html">堆和栈的比较</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">文件读取</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/01%E5%86%99%E5%85%A5%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6.html">写文本文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/02%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6.html">读取文本文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/03%E5%86%99%E5%85%A5%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6.html">写入二进制文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/04%E8%AF%BB%E5%8F%96%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6.html">读取二进制文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../13C%2B%2B11%E7%89%B9%E6%80%A7/index.html">c++11特性</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../13C%2B%2B11%E7%89%B9%E6%80%A7/01%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html">1、右值引用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../13C%2B%2B11%E7%89%B9%E6%80%A7/01%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html#id2">2、移动语义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../13C%2B%2B11%E7%89%B9%E6%80%A7/01%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html#id3">3、完美转移</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../14%E5%85%B6%E4%BB%96/index.html">其他</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ddemo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">C++知识</a></li>
+          <li class="breadcrumb-item"><a href="index.html">容器存储</a></li>
+      <li class="breadcrumb-item active">关联容器</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/07容器存储/04关联容器.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>关联容器<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<section id="pair">
+<h2>1、Pair键值对<a class="headerlink" href="#pair" title="此标题的永久链接"></a></h2>
+<p>pair是类模板，一般用于key/value数据
+pari结构模板的定义</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T1</span><span class="p">,</span><span class="k">class</span><span class="w"> </span><span class="nc">T2</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">pair</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">T1</span><span class="w"> </span><span class="n">first</span><span class="p">;</span>
+<span class="w">    </span><span class="n">T2</span><span class="w"> </span><span class="n">second</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pair</span><span class="p">();</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">pair</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">&amp;</span><span class="n">val1</span><span class="p">,</span><span class="k">const</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">&amp;</span><span class="n">val2</span><span class="p">);</span><span class="w"> </span><span class="c1">// 有两个参数的构造函数</span>
+<span class="w">    </span><span class="n">pair</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// 拷贝构造函数</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T1</span><span class="p">,</span><span class="n">T2</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// 交换两个pair</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>2、pair操作函数<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>1. pair&lt;T1, T2&gt; p1;            //创建一个空的pair对象（使用默认构造），它的两个元素分别是T1和T2类型，采用值初始化。
+2. pair&lt;T1, T2&gt; p1(v1, v2);    //创建一个pair对象，它的两个元素分别是T1和T2类型，其中first成员初始化为v1，second成员初始化为v2。
+3. make_pair(v1, v2);          // 以v1和v2的值创建一个新的pair对象，其元素类型分别是v1和v2的类型。
+4. p1 &lt; p2;                    // 两个pair对象间的小于运算，其定义遵循字典次序：如 p1.first &lt; p2.first 或者 !(p2.first &lt; p1.first) &amp;&amp; (p1.second &lt; p2.second) 则返回true。
+5. p1 == p2；                  // 如果两个对象的first和second依次相等，则这两个对象相等；该运算使用元素的==操作符。
+6. p1.first;                   // 返回对象p1中名为first的公有数据成员
+7. p1.second;                 // 返回对象p1中名为second的公有数据成员
+</pre></div>
+</div>
+<section id="id3">
+<h3>17.3 红黑二叉树<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p><img alt="image-20221025104612983" src="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221025104612983.png" />
+每个节点有左右两个节点，左边的节点比该节点小，右边的节点比该节点大。查找效率非常高
+比如：查找36。
+36&gt;31，则向右查找
+36&lt;40，则向左查找
+36&gt;35，向右查找，查找成功。只需要查找3次。
+<img src="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221025104940794.png" alt="image-20221025104940794" style="zoom:50%;" /></p>
+</section>
+</section>
+<section id="map">
+<h2>4、map容器<a class="headerlink" href="#map" title="此标题的永久链接"></a></h2>
+<p>map容器的元素是pair键值对。
+map类模板的声明：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">K</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">V</span><span class="p">,</span><span class="k">class</span><span class="w"> </span><span class="nc">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">less</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span><span class="p">,</span><span class="k">class</span><span class="w"> </span><span class="nc">_Alloc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">allocator</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;&gt;&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">map</span><span class="o">:</span><span class="n">public_Tree</span><span class="o">&lt;</span><span class="n">_Tmap_traits</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">_Alloc</span><span class="p">,</span><span class="nb">false</span><span class="o">&gt;&gt;</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>第一个模板参数K：key的数据类型（pair.first）
+第二个模板参数V：value的数据类型（pair.second）
+第三个模板参数P：排序方法，缺省按key升序
+第四个模板参数_Alloc：分配器，缺省用new和delete</p>
+<p>map提供了双向迭代器
+二叉列表</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">BTNode</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">pair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w"> </span><span class="c1">// 键值对</span>
+<span class="w">    </span><span class="n">BTNode</span><span class="w"> </span><span class="o">*</span><span class="n">parent</span><span class="p">;</span><span class="w"> </span><span class="c1">// 父节点</span>
+<span class="w">    </span><span class="n">BTNode</span><span class="w"> </span><span class="o">*</span><span class="n">lchild</span><span class="p">;</span><span class="w"> </span><span class="c1">// 左子树</span>
+<span class="w">    </span><span class="n">BTNode</span><span class="w"> </span><span class="o">*</span><span class="n">rchild</span><span class="p">;</span><span class="w"> </span><span class="c1">// 右子树</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>5、map构造函数<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="w"> </span><span class="n">map</span><span class="p">();</span><span class="w"> </span><span class="n">创建一个空map</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">initialzer_list</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">il</span><span class="p">);</span><span class="w"> </span><span class="n">使用同一初始化列表</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="n">拷贝构造函数</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">iterator</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="n">iterator</span><span class="w"> </span><span class="n">last</span><span class="p">);</span><span class="w"> </span><span class="n">用迭代器创建map</span>
+<span class="mf">5.</span><span class="w"> </span><span class="n">map</span><span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="n">移动构造函数</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// 1. 创建一个空map</span>
+<span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m1</span><span class="p">();</span>
+<span class="c1">// 2. 构造函数：列表初始化</span>
+<span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m2</span><span class="p">({</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;08&quot;</span><span class="p">,</span><span class="s">&quot;冰冰&quot;</span><span class="p">},{</span><span class="s">&quot;02&quot;</span><span class="p">,</span><span class="s">&quot;西施&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;05&quot;</span><span class="p">,</span><span class="s">&quot;密密&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;01&quot;</span><span class="p">,</span><span class="s">&quot;金莲&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;06&quot;</span><span class="p">,</span><span class="s">&quot;喜欢过&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
+<span class="c1">// 3. 拷贝构造函数</span>
+<span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m2</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>6、map特性操作<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 返回容器的实际大小（已使用的空间）</span>
+<span class="mf">2.</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">empty</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 判断容器是否为空</span>
+<span class="mf">3.</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// 清空容器</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>7、map元素操作<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<ol class="simple">
+<li><p>[]运算符：如果指定键不存在，会向容器中添加新的键值对；如果哦在指定键不存在，则读取或修改容器中指定键的值；</p></li>
+<li><p>at()成员函数：如果指定键不存在，不会向容器中添加新的键值对，而是抛出out_of_range异常。</p></li>
+</ol>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="p">[](</span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"> </span><span class="c1">// 使用key访问元素</span>
+<span class="k">const</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="p">[](</span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 使用key访问元素，只读</span>
+<span class="n">V</span><span class="w"> </span><span class="o">&amp;</span><span class="nf">at</span><span class="p">(</span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="p">);</span><span class="w"> </span><span class="c1">// 使用key访问元素</span>
+<span class="k">const</span><span class="w"> </span><span class="n">V</span><span class="o">&amp;</span><span class="nf">at</span><span class="p">(</span><span class="n">K</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 使用key访问元素，只读</span>
+</pre></div>
+</div>
+<p>测试</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">({</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;08&quot;</span><span class="p">,</span><span class="s">&quot;冰冰&quot;</span><span class="p">},{</span><span class="s">&quot;02&quot;</span><span class="p">,</span><span class="s">&quot;西施&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;05&quot;</span><span class="p">,</span><span class="s">&quot;密密&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;01&quot;</span><span class="p">,</span><span class="s">&quot;金莲&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;06&quot;</span><span class="p">,</span><span class="s">&quot;喜欢过&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;m[08]=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">[</span><span class="s">&quot;08&quot;</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;m[02]=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="s">&quot;02&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// 循环输出</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2>8、map赋值操作<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<p>给已存在的容器赋值，将覆盖容器中原有的内容</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="c1">// 把容器m赋值给当前的容器</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="k">operator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">il</span><span class="p">);</span><span class="w"> </span><span class="c1">// 用统一初始化列表给当前容器赋值</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h2>9、map交换操作<a class="headerlink" href="#id8" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span><span class="w"> </span><span class="c1">// 把当前容器与m交换</span>
+</pre></div>
+</div>
+<p>交换的是树的根节点</p>
+</section>
+<section id="id9">
+<h2>10、比较操作<a class="headerlink" href="#id9" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h2>11、找操作<a class="headerlink" href="#id10" title="此标题的永久链接"></a></h2>
+<ol class="simple">
+<li><p>查找键值对为key的键值对；</p></li>
+</ol>
+<p>在map容器中查找键值对为key的键值对，如果成功找到，则返回指向该键值对的迭代器；失败返回end()。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span>
+<span class="n">const_iterator</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//只读</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>查找键值&gt;=key的键值对</p></li>
+</ol>
+<p>在map容器中查找第一个键值&gt;=key的键值对，陈工返回迭代器；失败返回end()；</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span><span class="w"> </span><span class="nf">lower_bound</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span>
+<span class="n">const_iterator</span><span class="w"> </span><span class="nf">lower_bound</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 只读</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>查找键值&gt;key的键值对</p></li>
+</ol>
+<p>在map容器中查找第一个键值&gt;=key的键值对，陈工返回迭代器；失败返回end()</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">iterator</span><span class="w"> </span><span class="nf">upper_bound</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">);</span>
+<span class="n">const_iterator</span><span class="w"> </span><span class="nf">upper_bound</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">&amp;</span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">// 只读</span>
+</pre></div>
+</div>
+<p>示例代码：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m1</span><span class="p">({</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;08&quot;</span><span class="p">,</span><span class="s">&quot;冰冰&quot;</span><span class="p">},{</span><span class="s">&quot;02&quot;</span><span class="p">,</span><span class="s">&quot;西施&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;05&quot;</span><span class="p">,</span><span class="s">&quot;密密&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;01&quot;</span><span class="p">,</span><span class="s">&quot;金莲&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;06&quot;</span><span class="p">,</span><span class="s">&quot;喜欢过&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
+<span class="c1">//map&lt;string,string&gt;::iterator it = m1.lower_bound(&quot;02&quot;); // 返回一个&gt;=key的迭代器</span>
+<span class="c1">//map&lt;string, string&gt;::iterator it = m1.upper_bound(&quot;02&quot;); // 返回一个&gt;key的迭代器</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>查找&gt;=和&gt;的键值对</p></li>
+</ol>
+<p>equal_range(key) 成员方法可以看做是 lower_bound(key) 和 upper_bound(key) 的结合体，该方法会返回一个 pair 对象，其中的 2 个元素都是迭代器类型，其中 pair.first 实际上就是 lower_bound(key) 的返回值，而 pair.second 则等同于 upper_bound(key) 的返回值。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m1</span><span class="p">({</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;08&quot;</span><span class="p">,</span><span class="s">&quot;冰冰&quot;</span><span class="p">},{</span><span class="s">&quot;02&quot;</span><span class="p">,</span><span class="s">&quot;西施&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;05&quot;</span><span class="p">,</span><span class="s">&quot;密密&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;01&quot;</span><span class="p">,</span><span class="s">&quot;金莲&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;06&quot;</span><span class="p">,</span><span class="s">&quot;喜欢过&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
+<span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mpair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">.</span><span class="n">equal_range</span><span class="p">(</span><span class="s">&quot;01&quot;</span><span class="p">);</span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">it_first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpair</span><span class="p">.</span><span class="n">first</span><span class="p">;</span><span class="w"> </span><span class="c1">// 这里的auto是：map&lt;string,string&gt;::iterator</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">it_second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpair</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it_first</span><span class="o">-&gt;</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it_first</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it_second</span><span class="o">-&gt;</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it_second</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h2>12、插入和删除<a class="headerlink" href="#id11" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>1. void insert(initializer_list&lt;pair&lt;K,V&gt;&gt; il); // 在容器中插入一个元素
+2. pair&lt;iterator,bool&gt; insert(const pair&lt;K,V&gt; &amp;value); // 在容器中插入一个元素，返回pair；first是已插入元素的迭代器，	second是插入结果
+3. void insert(iterator first,iterator last); // 用迭代器插入一个区间元素
+4. pair&lt;iterator,bool&gt; emplace(Args&amp;&amp;...args); // 将创建新键值对所需的数据作为参数直接传入，map容器将直接构造元素。返回pair：first是已插入元素的迭代器，second是插入结果
+5. iterator emplace——hint(const_iterator pos,Args&amp;&amp;...args);  // 与4相同，第一参数提示插入的位置，提高性能，可用end（）和begin（）。
+6. size_t erase(const K &amp;key); // 从容器中删除指定key的元素，返回已删除元素的个数
+7. iterator erase(iterator pos); // 使用迭代器删除元素，返回下一个有效的迭代器
+8. iterator erase(iterator first,iterator last); // 使用迭代器删除一个区间的元素，返回下一个有效的迭代器
+</pre></div>
+</div>
+<p>empace效率更高，</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="cpf">&lt;map&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Gril</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">	</span><span class="n">string</span><span class="w"> </span><span class="n">m_name</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">m_age</span><span class="p">;</span>
+
+<span class="w">	</span><span class="n">Gril</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">_name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">_age</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="n">m_name</span><span class="p">(</span><span class="n">_name</span><span class="p">),</span><span class="w"> </span><span class="n">m_age</span><span class="p">(</span><span class="n">_age</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;两个参数的构造函数&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="n">Gril</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Gril</span><span class="o">&amp;</span><span class="w"> </span><span class="n">g</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="n">m_name</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">m_name</span><span class="p">),</span><span class="w"> </span><span class="n">m_age</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">m_age</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;拷贝构造函数&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mm</span><span class="p">;</span>
+<span class="w">	</span><span class="n">mm</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="p">(</span><span class="s">&quot;冰冰&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)));</span><span class="w"> </span><span class="c1">// 一次构造函数，两次拷贝构造函数</span>
+<span class="w">	</span><span class="n">mm</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="p">(</span><span class="s">&quot;冰冰&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)));</span><span class="w"> </span><span class="c1">// 一次构造函数，两次拷贝构造函数</span>
+<span class="w">	</span><span class="n">mm</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="p">(</span><span class="s">&quot;冰冰&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)));</span><span class="w"> </span><span class="c1">// 一次构造函数，两次拷贝构造函数</span>
+<span class="w">	</span><span class="n">mm</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">make_pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="p">(</span><span class="s">&quot;冰冰&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">)));</span><span class="w"> </span><span class="c1">// 一次构造函数，两次拷贝构造函数</span>
+<span class="w">	</span><span class="n">mm</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">Gril</span><span class="p">(</span><span class="s">&quot;冰冰&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">));</span><span class="w"> </span><span class="c1">// 一次构造函数，两一次拷贝构造函数</span>
+<span class="w">	</span><span class="n">mm</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;冰冰&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span><span class="w"> </span><span class="c1">// 错误</span>
+<span class="w">	</span><span class="n">mm</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">piecewise_construct</span><span class="p">,</span><span class="w"> </span><span class="n">forward_as_tuple</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">forward_as_tuple</span><span class="p">(</span><span class="s">&quot;冰冰&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">));</span><span class="w"> </span><span class="c1">// // 一次构造函数</span>
+
+<span class="w">	</span><span class="n">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">mm.emplace(piecewise_construct,</span> <span class="pre">forward_as_tuple(8),</span> <span class="pre">forward_as_tuple(&quot;冰冰&quot;,</span> <span class="pre">18));</span></code>中，<code class="docutils literal notranslate"><span class="pre">piecewise_construct</span></code>为分段构造，<code class="docutils literal notranslate"><span class="pre">forward_as_tuple(8)</span></code>构造key，<code class="docutils literal notranslate"><span class="pre">forward_as_tuple(&quot;冰冰&quot;,</span> <span class="pre">18))</span></code>构造value</p>
+<p>1的示例代码</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m1</span><span class="p">({</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;08&quot;</span><span class="p">,</span><span class="s">&quot;冰冰&quot;</span><span class="p">},{</span><span class="s">&quot;02&quot;</span><span class="p">,</span><span class="s">&quot;西施&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;05&quot;</span><span class="p">,</span><span class="s">&quot;密密&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;01&quot;</span><span class="p">,</span><span class="s">&quot;金莲&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;06&quot;</span><span class="p">,</span><span class="s">&quot;喜欢过&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
+<span class="n">m1</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;03&quot;</span><span class="p">,</span><span class="s">&quot;大乔&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">});</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">!=</span><span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>2的示例代码</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">pair</span><span class="o">&lt;</span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mpair1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;04&quot;</span><span class="p">,</span><span class="s">&quot;高小姐&quot;</span><span class="p">}</span><span class="w"> </span><span class="p">);</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">!=</span><span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="03List.html" class="btn btn-neutral float-left" title="list" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="05%E5%93%88%E5%B8%8C%E8%A1%A8.html" class="btn btn-neutral float-right" title="哈希表" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2023, db.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

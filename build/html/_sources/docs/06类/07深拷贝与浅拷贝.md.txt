@@ -1,0 +1,109 @@
+# 深拷贝与浅拷贝
+
+浅拷贝：简单的赋值拷贝操作；
+深拷贝：在堆区重新申请内存空间，进行拷贝操作；
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403154332310.png#crop=0&crop=0&crop=1&crop=1&id=URyO5&originHeight=890&originWidth=1982&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**使用系统的拷贝构造函数**
+```c
+#include<iostream>
+using namespace std;
+class Person
+{
+public:
+	int age;
+	int* height;//定义一个指针
+	Person()
+	{
+		cout << "默认构造函数被调用" << endl;
+	}
+	Person(int _age,int _height)
+	{
+		age = _age;
+		height = new int(_height); // 用指针来接收堆区开辟的数据
+		cout << "有参构造函数被调用" << endl;
+	}
+	~Person()
+	{
+		if (height != NULL)
+		{
+			delete height;
+			height = NULL; //防止野指针出现
+		}
+		cout << "析构构造函数被调用" << endl;
+	}
+};
+void test01()
+{
+	Person p1(10,160);
+	cout << "p1的年龄为" << p1.age << ",身高为" << *p1.height << endl;
+	Person p2(p1);
+	cout << "p2的年龄为" << p2.age << ",身高为" << *p2.height << endl;
+}
+int main()
+{
+	test01();
+}
+```
+会崩掉
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403155840450.png#crop=0&crop=0&crop=1&crop=1&id=rY2sj&originHeight=375&originWidth=600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**自己写拷贝构造函数**
+```c
+//为了防止程序崩掉自己写拷贝构造函数
+	Person(const Person &p)
+	{
+		age = p.age;
+		//height = p.height;编译器默认会这样做
+		// 深拷贝
+		height = new int(*p.height);
+	}
+```
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403160219989.png#crop=0&crop=0&crop=1&crop=1&id=mAZEy&originHeight=953&originWidth=1559&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**完整代码**
+```c
+#include<iostream>
+using namespace std;
+class Person
+{
+public:
+	int age;
+	int* height;//定义一个指针
+	Person()
+	{
+		cout << "默认构造函数被调用" << endl;
+	}
+	Person(int _age,int _height)
+	{
+		age = _age;
+		height = new int(_height); // 用指针来接收堆区开辟的数据
+		cout << "有参构造函数被调用" << endl;
+	}
+	//为了防止程序崩掉自己写拷贝构造函数
+	Person(const Person &p)
+	{
+		age = p.age;
+		//height = p.height;编译器默认会这样做
+		// 深拷贝
+		height = new int(*p.height);
+	}
+	~Person()
+	{
+		if (height != NULL)
+		{
+			delete height;
+			height = NULL; //防止野指针出现
+		}
+		cout << "析构构造函数被调用" << endl;
+	}
+};
+void test01()
+{
+	Person p1(10,160);
+	cout << "p1的年龄为" << p1.age << ",身高为" << *p1.height << endl;
+	Person p2(p1);
+	cout << "p2的年龄为" << p2.age << ",身高为" << *p2.height << endl;
+}
+int main()
+{
+	test01();
+}
+```

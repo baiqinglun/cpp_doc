@@ -1,0 +1,29 @@
+# 函数默认值
+
+1. 如果一个形参位置已经有默认值，则后面的形参都得有默认值；
+2. 如果函数声明中形参已经有默认值，在函数定义时就不能给默认值，否则会报错；
+```c
+#include<iostream>
+using namespace std;
+int f1(int a, int b = 20, int c = 30)
+{
+	return a + b + c;
+}
+int main() {
+	f1(10); //可以只传递一个，因为在函数中b、c已经给过值
+	f1(10,60); //如果给b传了值，则用传入的
+}
+```
+**声明和定义**
+```c
+#include<iostream>
+using namespace std;
+int f2(int a = 10, int b = 10);
+int f2(int a = 10,int b = 10)
+{
+}
+int main() {
+	f2();
+}
+```
+报错：f2重定义默认参数

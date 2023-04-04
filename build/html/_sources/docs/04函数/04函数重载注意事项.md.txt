@@ -1,0 +1,32 @@
+# 函数重载注意事项
+1. 引用作为重载的条件；
+```c
+#include<iostream>
+using namespace std;
+void f(int &a) {
+	cout << "f(int &a)调用了！" << endl;
+}
+void f(const int &a) {
+	cout << "f(const int &a)调用了！" << endl;
+}
+int main() {
+	int a = 10;
+	f(a); // f(int &a)调用了！
+	f(10);// f(const int &a)调用了！
+}
+```
+**函数重载遇见默认参数**
+```c
+#include<iostream>
+using namespace std;
+void f(int &a,int &b = 10) {
+	cout << "f(int &a ,int &b = 10)调用了！" << endl;
+}
+void f(int &a) {
+	cout << "f(const int &a)调用了！" << endl;
+}
+int main() {
+	int a = 10;
+	f(a); // 错误
+}
+```
