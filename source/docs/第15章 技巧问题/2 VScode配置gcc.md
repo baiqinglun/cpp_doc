@@ -1,4 +1,4 @@
-# 02VScode配置gcc
+# 15.2 VScode配置gcc
 
 ## 1.1 下载gcc
 https://github.com/niXman/mingw-builds-binaries/releases
@@ -77,7 +77,7 @@ externalConsole为true会调用终端
 ```
 
 
-# 2、include包含出错
+## 1.5 include包含出错
 
 vscode默认编译器是vs，使用gcc需要更改配置
 

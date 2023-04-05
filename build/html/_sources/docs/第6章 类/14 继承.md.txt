@@ -1,4 +1,4 @@
-# 继承
+# 6.14 继承
 继承是面向对象三大特性之一。
 ![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220405203800618.png#crop=0&crop=0&crop=1&crop=1&id=VllcF&originHeight=505&originWidth=1057&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 继承语法：`class 子类 : 继承方式 父类`

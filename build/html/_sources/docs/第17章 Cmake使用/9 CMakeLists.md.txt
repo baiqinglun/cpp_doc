@@ -1,6 +1,7 @@
-# 示例代码
+# 17.9 CmakeLists
+示例代码
 
-```cmake
+```bash
 cmake_minimum_required(VERSION 3.10)
 
 # 设置c++标准

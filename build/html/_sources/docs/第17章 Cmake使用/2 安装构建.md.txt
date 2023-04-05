@@ -1,4 +1,4 @@
-# cmake安装
+# 17.2 cmake安装
 https://blog.csdn.net/u011231598/article/details/80338941
 
 # 构建和运行
