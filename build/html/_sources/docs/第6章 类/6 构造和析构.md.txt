@@ -1,0 +1,209 @@
+# 构造和析构
+1. C++利用了**构造函数**和**析构函数**解决上述问题，这两个函数将会被编译器自动调用，完成对象**初始化**和**清理**工作。
+2. 对象的初始化和清理工作是编译器强制要我们做的事情，因此如果我们不提供构造和析构，编译器会提供编译器提供的构造函数和析构函数是空实现。
+3. 构造函数：主要作用在于创建对象时为对象的成员属性赋值，构造函数由编译器自动调用，无须手动调用。
+4. 析构函数：主要作用在于对象销毁前系统自动调用，执行一些清理工作。
+构造函数语法：`类名(){}`
+1. 构造函数，没有返回值也不写void；
+2. 函数名和类型相同；
+3. 构造函数可以有参数，可以发生重载；
+4. 程序在调用对象时可以自动调用，无须手动调用，而且只会调用**一次**；
+析构函数语法：`~类名(){}`
+1. 析构函数，没有返回值也不写void；
+2. 函数名称与类名相同，在名称前面加`~`
+3. 构造函数不可以有参数，不可发生重载；
+4. 程序在对象销毁前自动调用，无须手动调用，只会调用一次；
+
+**代码实现**
+```c
+#include<iostream>
+using namespace std;
+class Person
+{
+public:
+	// 构造函数
+	Person()
+	{
+		cout << "对象的构造函数被调用" << endl;
+	}
+	// 析构函数
+	~Person()
+	{
+		cout << "对象的析构函数被调用" << endl;
+	}
+};
+void test01() {
+	// 因为在栈区，test01执行完毕之后，里面的数据会释放
+	Person p;
+}
+int main()
+{
+	//test01();
+	Person p;
+	system("pause");
+	return 0;
+}
+```
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220402104115102.png#crop=0&crop=0&crop=1&crop=1&id=vlfnM&originHeight=414&originWidth=952&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220402104142720.png#crop=0&crop=0&crop=1&crop=1&id=MCdHk&originHeight=358&originWidth=859&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+## 1、构造函数调用原则
+1. 创建一个类，c++编译器会给每个类都添加至少3个函数；默认构造（空实现）、析构函数（空实现）和拷贝函数（值拷贝）；
+**写了拷贝构造函数时**
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403150658824.png#crop=0&crop=0&crop=1&crop=1&id=esz81&originHeight=572&originWidth=1050&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**不写拷贝函数时**
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403150741445.png#crop=0&crop=0&crop=1&crop=1&id=BtAG2&originHeight=491&originWidth=985&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+> 不管有没有写拷贝构造函数，系统在创建对象时都会自动创建拷贝构造函数，只不过里面全是赋值操作。
+2. 如果用户提供了有参构造函数，而没有提供默认构造函数，系统也不会提供默认构造函数；
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403151314416.png#crop=0&crop=0&crop=1&crop=1&id=uHmjj&originHeight=710&originWidth=1453&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+3. 如果我们写了拷贝构造函数，则系统就不会提供有参构造函数和默认构造函数；
+
+## 2、构造函数分类
+按参数分：有参构造和无参构造；
+按类型分：普通构造和拷贝构造；
+三种调用方法：括号法、显示法和隐式转换法；
+括号法：
+```c
+Person p1;
+Person p2(10);
+Person p3(p2);
+```
+显示法：
+```c
+Person p1;
+Person p2 = Person(10);
+Person p3 = Person(p2);
+```
+隐式转换法：
+```c
+Person p1;
+Person p2 = 10;
+Person p3 = p2;
+```
+> 匿名对象(没有名字)
+当前行执行后，系统会回收匿名对象
+```c
+Person(10);
+```
+不要使用拷贝构造函数初始化匿名对象
+```c
+Person(p3)
+这行代码等价于Person (p3) === Person p3;
+```
+> 调用默认构造时不要加括号
+这样是代表函数的声明；
+```c
+Person p();
+```
+**代码**
+```c
+#include<iostream>
+using namespace std;
+class Person
+{
+private:
+	int age;
+public:
+	// 无参构造函数
+	Person()
+	{
+		cout << "无参构造被调用" << endl;
+	}
+	// 有参构造函数
+	Person(int a)
+	{
+		cout << "有参构造被调用" << endl;
+	}
+	// 拷贝构造函数
+	Person(const Person &p)
+	{
+		age = p.age;
+		cout << "拷贝构造被调用" << endl;
+	}
+	// 析构函数
+	~Person()
+	{
+		cout << "析构被调用" << endl;
+	}
+};
+void test01()
+{
+	Person p1;
+	Person p2(10);
+	Person p3(p2);
+}
+int main()
+{
+	test01();
+}
+```
+
+## 3、拷贝构造函数
+1. 使用一个已经创建完毕的对象来初始化一个新对象；
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403144711591.png#crop=0&crop=0&crop=1&crop=1&id=hhOnX&originHeight=559&originWidth=1280&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+2. 值传递的方式给函数参数传值；
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403144959804.png#crop=0&crop=0&crop=1&crop=1&id=GMzir&originHeight=618&originWidth=1185&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+3. 值方式返回局部对象；
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220403145253154.png#crop=0&crop=0&crop=1&crop=1&id=HGW6N&originHeight=665&originWidth=1255&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+`doWork在返回时重新拷贝了一个p1传给p；`
+**代码**
+```c
+#include<iostream>
+using namespace std;
+class Person
+{
+public:
+	Person()
+	{
+		cout << "Person默认构造函数调用" << endl;
+	}
+	Person(int _age)
+	{
+		age = _age;
+		cout << "Person有参构造函数调用" << endl;
+	}
+	Person(const Person &p)
+	{
+		age = p.age;
+		cout << "Person默认构造函数调用" << endl;
+	}
+	// 析构函数
+	~Person()
+	{
+		cout << "析构函数被调用" << endl;
+	}
+private:
+	int age;
+};
+// 1.使用一个已经创建完毕的对象来初始化一个新对象
+void test01()
+{
+	Person p1(20);
+	Person p2(p1);
+}
+// 2.值传递的方式给函数参数传值
+void doWork(Person p)
+{
+}
+void test02()
+{
+	Person p;
+	doWork(p);
+}
+// 3.值方式返回局部对象
+Person doWork2()
+{
+	Person p1;
+	return p1;
+}
+void test03()
+{
+	Person p = doWork2();
+}
+int main()
+{
+	//test01();
+	//test02();
+	test03();
+}
+```

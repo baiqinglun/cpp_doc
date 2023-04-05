@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BasicExcel使用 &mdash; ddemo v1.0 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="VCPKG" href="3%20VCPKG.html" />
+    <link rel="prev" title="Drogen" href="1%20Drogen.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/index.html">基础语法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/1%20%E5%8F%98%E9%87%8F%E5%B8%B8%E9%87%8F.html">变量与常量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/2%20%E5%85%B3%E9%94%AE%E5%AD%97.html">关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/3%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/4%20%E8%BF%90%E7%AE%97%E7%AC%A6.html">运算符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/5%20%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B.html">程序流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/6%20%E5%85%B1%E5%90%8C%E4%BD%93.html">共同体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC1%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/7%20%E6%9E%9A%E4%B8%BE.html">枚举</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC2%E7%AB%A0%20%E5%BC%95%E7%94%A8/index.html">引用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC2%E7%AB%A0%20%E5%BC%95%E7%94%A8/1%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html">基本使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC3%E7%AB%A0%20%E6%8C%87%E9%92%88/index.html">指针</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC3%E7%AB%A0%20%E6%8C%87%E9%92%88/1%20%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.html">基本用法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC4%E7%AB%A0%20%E5%87%BD%E6%95%B0/index.html">函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC4%E7%AB%A0%20%E5%87%BD%E6%95%B0/1%20%E5%87%BD%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC.html">函数默认值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC4%E7%AB%A0%20%E5%87%BD%E6%95%B0/2%20%E5%87%BD%E6%95%B0%E5%8D%A0%E4%BD%8D%E5%8F%82%E6%95%B0.html">函数占位参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC4%E7%AB%A0%20%E5%87%BD%E6%95%B0/3%20%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD.html">函数的重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC4%E7%AB%A0%20%E5%87%BD%E6%95%B0/4%20%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html">函数重载注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC4%E7%AB%A0%20%E5%87%BD%E6%95%B0/5%20%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0.html">内联函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/index.html">结构体</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/1%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html">基本使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/2%20%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84.html">结构体数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/3%20%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88.html">结构体指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/4%20%E7%BB%93%E6%9E%84%E4%BD%93%E5%B5%8C%E5%A5%97%E7%BB%93%E6%9E%84%E4%BD%93.html">结构体嵌套结构体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/5%20%E7%BB%93%E6%9E%84%E4%BD%93%E5%81%9A%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0.html">结构体做函数参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/6%20%E7%BB%93%E6%9E%84%E4%BD%93const.html">结构体const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/7%20%E6%A1%88%E4%BE%8B.html">案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC5%E7%AB%A0%20%E7%BB%93%E6%9E%84%E4%BD%93/8%20%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E9%93%BE%E8%A1%A8.html">实现简单链表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/index.html">类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/1%20%E5%B0%81%E8%A3%85.html">封装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/2%20%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90.html">访问权限</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/3%20struct%E5%92%8Cclass.html">struct和class区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/4%20%E6%88%90%E5%91%98%E5%B1%9E%E6%80%A7%E7%A7%81%E6%9C%89.html">成员属性私有</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/5%20%E6%A1%88%E4%BE%8B.html">案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/6%20%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84.html">构造和析构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/7%20%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D.html">深拷贝与浅拷贝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/8%20%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8.html">初始化列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/9%20%E7%B1%BB%E4%BD%9C%E4%B8%BA%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.html">类作为成员变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/10%20%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.html">类静态成员变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/11%20%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html">静态成员函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/12%20%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88.html">对象模型和this指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/13%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html">运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/14%20%E7%BB%A7%E6%89%BF.html">继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC6%E7%AB%A0%20%E7%B1%BB/15%20%E5%A4%9A%E6%80%81.html">多态</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC7%E7%AB%A0%20%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/index.html">容器存储</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC7%E7%AB%A0%20%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/1%20%E6%95%B0%E7%BB%84.html">数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC7%E7%AB%A0%20%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/2%20Vector.html">Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC7%E7%AB%A0%20%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/3%20List.html">list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC7%E7%AB%A0%20%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/4%20%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8.html">关联容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC7%E7%AB%A0%20%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/5%20%E5%93%88%E5%B8%8C%E8%A1%A8.html">哈希表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC8%E7%AB%A0%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">类型转换</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC8%E7%AB%A0%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/1%20%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.html">自动类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC8%E7%AB%A0%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/2%20%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0.html">转化函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC8%E7%AB%A0%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/3%20static_cast.html">static_cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC8%E7%AB%A0%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/4%20const_cast.html">const_cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC8%E7%AB%A0%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/5%20reinterpret_cast.html">reinterpret_cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC8%E7%AB%A0%20%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/6%20dynamic_cast.html">dynamic_cast</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC9%E7%AB%A0%20%E6%A8%A1%E6%9D%BF/index.html">模板</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC9%E7%AB%A0%20%E6%A8%A1%E6%9D%BF/1%20%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF.html">函数模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC9%E7%AB%A0%20%E6%A8%A1%E6%9D%BF/2%20%E7%B1%BB%E6%A8%A1%E6%9D%BF.html">类模板</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC10%E7%AB%A0%20%E5%85%B3%E9%94%AE%E5%AD%97/index.html">关键字</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC10%E7%AB%A0%20%E5%85%B3%E9%94%AE%E5%AD%97/1%20friend.html">关键字friend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC11%E7%AB%A0%20%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/index.html">内存分配</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC11%E7%AB%A0%20%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/1%20%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.html">内存分配</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC11%E7%AB%A0%20%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/2%20%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E5%89%8D.html">程序运行前</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC11%E7%AB%A0%20%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/3%20%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E5%90%8E.html">程序运行后</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC11%E7%AB%A0%20%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/4%20new%E5%85%B3%E9%94%AE%E5%AD%97.html">new关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC11%E7%AB%A0%20%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/5%20%E5%A0%86%E5%92%8C%E6%A1%9F%E6%AF%94%E8%BE%83.html">堆和栈的比较</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC12%E7%AB%A0%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">文件读取</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC12%E7%AB%A0%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/1%20%E5%86%99%E5%85%A5%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6.html">写文本文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC12%E7%AB%A0%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/2%20%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6.html">读取文本文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC12%E7%AB%A0%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/3%20%E5%86%99%E5%85%A5%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6.html">写入二进制文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC12%E7%AB%A0%20%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/4%20%E8%AF%BB%E5%8F%96%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6.html">读取二进制文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC13%E7%AB%A0%20C%2B%2B11%E7%89%B9%E6%80%A7/index.html">c++11特性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC13%E7%AB%A0%20C%2B%2B11%E7%89%B9%E6%80%A7/1%20%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html">移动语义</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC14%E7%AB%A0%20%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/index.html">代码片段</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC14%E7%AB%A0%20%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/1%20%E7%88%B1%E5%BF%83%E4%BB%A3%E7%A0%81.html">爱心代码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC14%E7%AB%A0%20%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/2%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BC%96%E7%A0%81.html">字符串编码转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC14%E7%AB%A0%20%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/3%20%E6%95%B0%E5%AD%97%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.html">数字转字符串</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC14%E7%AB%A0%20%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/4%20%E5%87%BD%E6%95%B0%E4%BC%A0%E9%80%92%E6%95%B0%E7%BB%84.html">1、函数传递数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC14%E7%AB%A0%20%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/4%20%E5%87%BD%E6%95%B0%E4%BC%A0%E9%80%92%E6%95%B0%E7%BB%84.html#id2">5、函数传递多维数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC14%E7%AB%A0%20%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/5%20%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88.html">指针常量与常量指针</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/index.html">技巧问题</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/1%20Clion%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.html">clion中文乱码</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/2%20VScode%E9%85%8D%E7%BD%AEgcc.html">02VScode配置gcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/2%20VScode%E9%85%8D%E7%BD%AEgcc.html#include">2、include包含出错</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">优秀框架</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1%20Drogen.html">Drogen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">BasicExcel使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3%20VCPKG.html">VCPKG</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/index.html">cmake</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html#id2">优势</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html#id3">持续集成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html#cmake">cmake工作原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/2%20%E5%AE%89%E8%A3%85%E6%9E%84%E5%BB%BA.html">cmake安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/2%20%E5%AE%89%E8%A3%85%E6%9E%84%E5%BB%BA.html#id1">构建和运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/3%20%E6%A6%82%E5%BF%B5.html">说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/3%20%E6%A6%82%E5%BF%B5.html#id2">概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/3%20%E6%A6%82%E5%BF%B5.html#id3">命令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html">project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#add-executable">add_executable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#message">message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#set">set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#option">option</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#configure-file">configure_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#include-directories">include_directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#target-include-directories">target_include_directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#target-link-libraries">target_link_libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html#add-library">add_library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/5%20%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E9%9D%99%E6%80%81%E5%BA%93.html">使用外部静态库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/6%20%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E5%8A%A8%E6%80%81%E5%BA%93.html">使用外部动态库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/7%20%E6%9E%84%E5%BB%BA%E5%AE%9E%E4%BE%8B.html">实例：Excel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/8%20%E5%AE%89%E8%A3%85.html">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/9%20CMakeLists.html">示例代码</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC18%E7%AB%A0%20%E6%9C%AA%E5%BD%92%E7%B1%BB/index.html">其他</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC18%E7%AB%A0%20%E6%9C%AA%E5%BD%92%E7%B1%BB/1%20test.html">test</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ddemo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">优秀框架</a></li>
+      <li class="breadcrumb-item active">BasicExcel使用</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/第16章 框架使用/2 BasicExcel.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basicexcel">
+<h1>BasicExcel使用<a class="headerlink" href="#basicexcel" title="此标题的永久链接"></a></h1>
+<p><a class="reference external" href="https://www.codeproject.com/Articles/13852/BasicExcel-A-Class-to-Read-and-Write-to-Microsoft">官网</a></p>
+<section id="id1">
+<h2>基本使用<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;BasicExcel.hpp&quot;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">YExcel</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">BasicExcel</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s">&quot;test1.xls&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="n">New</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">BasicExcelWorksheet</span><span class="o">*</span><span class="w"> </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">GetWorksheet</span><span class="p">(</span><span class="s">&quot;Sheet1&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">BasicExcelCell</span><span class="o">*</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">Set</span><span class="p">(</span><span class="mf">3.6666</span><span class="p">);</span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="n">SaveAs</span><span class="p">(</span><span class="s">&quot;test1.xls&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>注意</p>
+</div></blockquote>
+<ol class="simple">
+<li><p>使用<code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">YExcel;</span></code>命名；</p></li>
+<li><p>一定得使用<code class="docutils literal notranslate"><span class="pre">BasicExcel::New()</span></code>函数创建工作博，否则文件出错，打不开；</p></li>
+</ol>
+<p>我应该列出您应该知道使用的三个类中的函数。接下来将有一个示例代码。<code class="docutils literal notranslate"><span class="pre">BasicExcel</span></code></p>
+</section>
+<section id="id2">
+<h2>函数大全<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<section id="excel">
+<h3>类 基本Excel<a class="headerlink" href="#excel" title="此标题的永久链接"></a></h3>
+<p>| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">New(int</span> <span class="pre">sheets=3)</span></code>                                                    | 使用给定数量的电子表格创建新的 Excel 工作簿（最少 1 个）。                                                                                                                                               |
+| ————————————————————————— | ——————————————————————————————————————————————————————————————————– |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Load(const</span> <span class="pre">char*</span> <span class="pre">filename)</span></code>                                           | 从文件加载 Excel 工作簿。                                                                                                                                                                                |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Save()</span></code>                                                               | 将当前Excel工作簿保存到打开的文件。                                                                                                                                                                      |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">SaveAs(const</span> <span class="pre">char*</span> <span class="pre">filename)</span></code>                                         | 将当前 Excel 工作簿保存到文件。                                                                                                                                                                          |
+| <code class="docutils literal notranslate"><span class="pre">size_t</span> <span class="pre">GetTotalWorkSheets()</span></code>                                               | 当前 Excel 工作簿中的 Excel 工作表总数。                                                                                                                                                                 |
+| <code class="docutils literal notranslate"><span class="pre">BasicExcelWorksheet*</span> <span class="pre">GetWorksheet(size_t</span> <span class="pre">sheetIndex)</span></code>                      | 获取指向给定索引处的 Excel 工作表的指针。索引从 开始。如果索引无效，则返回。<code class="docutils literal notranslate"><span class="pre">0``0</span></code>                                                                                                                       |
+| <code class="docutils literal notranslate"><span class="pre">BasicExcelWorksheet*</span> <span class="pre">GetWorksheet(const</span> <span class="pre">char*</span> <span class="pre">name)</span></code>                       | 获取指向已指定 ANSI 名称的 Excel 工作表的指针。如果没有具有给定名称的 Excel 工作表，则返回。<code class="docutils literal notranslate"><span class="pre">0</span></code>                                                                                                          |
+| <code class="docutils literal notranslate"><span class="pre">BasicExcelWorksheet*</span> <span class="pre">GetWorksheet(const</span> <span class="pre">wchar_t*</span> <span class="pre">name)</span></code>                    | 获取指向已指定 Unicode 名称的 Excel 工作表的指针。如果没有具有给定名称的 Excel 工作表，则返回。<code class="docutils literal notranslate"><span class="pre">0</span></code>                                                                                                       |
+| <code class="docutils literal notranslate"><span class="pre">BasicExcelWorksheet*</span> <span class="pre">AddWorksheet(int</span> <span class="pre">sheetIndex=-1)</span></code>                      | 将新的 Excel 工作表添加到给定索引。工作表的名称是 SheetX，其中 X 是从 1 开始的数字。索引从 开始。工作表将添加到最后一个位置，如果 。如果成功，则返回指向工作表的指针，否则返回。<code class="docutils literal notranslate"><span class="pre">0``sheetIndex</span> <span class="pre">==</span> <span class="pre">-1``0</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">BasicExcelWorksheet*</span> <span class="pre">AddWorksheet(const</span> <span class="pre">char*</span> <span class="pre">name,</span> <span class="pre">int</span> <span class="pre">sheetIndex=-1)</span></code>    | 将具有给定 ANSI 名称的新 Excel 工作表添加到给定索引。索引从 开始。工作表将添加到最后一个位置，如果 。如果成功，则返回指向工作表的指针，否则返回 0。<code class="docutils literal notranslate"><span class="pre">0``sheetIndex</span> <span class="pre">==</span> <span class="pre">-1</span></code>                                 |
+| <code class="docutils literal notranslate"><span class="pre">BasicExcelWorksheet*</span> <span class="pre">AddWorksheet(const</span> <span class="pre">wchar_t*</span> <span class="pre">name,</span> <span class="pre">int</span> <span class="pre">sheetIndex=-1)</span></code> | 将具有给定 Unicode 名称的新 Excel 工作表添加到给定索引。索引从 开始。工作表将添加到最后一个位置，如果 。如果成功，则返回指向工作表的指针，否则返回 0。<code class="docutils literal notranslate"><span class="pre">0``sheetIndex</span> <span class="pre">==</span> <span class="pre">-1</span></code>                              |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">DeleteWorksheet(size_t</span> <span class="pre">sheetIndex)</span></code>                                   | 删除给定索引处的 Excel 工作表。索引从 开始。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">0``true</span> <span class="pre">``false</span></code>                                                                                                                |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">DeleteWorksheet(const</span> <span class="pre">char*</span> <span class="pre">name)</span></code>                                    | 删除已指定 ANSI 名称的 Excel 工作表。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">``false</span></code>                                                                                                                          |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">DeleteWorksheet(const</span> <span class="pre">wchar_t*</span> <span class="pre">name)</span></code>                                 | 删除已指定 Unicode 名称的 Excel 工作表。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">``false</span></code>                                                                                                                       |
+| <code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">GetAnsiSheetName(size_t</span> <span class="pre">sheetIndex)</span></code>                                 | 获取给定索引处的工作表名称。索引从 开始。如果名称采用 Unicode 格式，则返回。<code class="docutils literal notranslate"><span class="pre">0``0</span></code>                                                                                                                       |
+| <code class="docutils literal notranslate"><span class="pre">wchar_t*</span> <span class="pre">GetUnicodeSheetName(size_t</span> <span class="pre">sheetIndex)</span></code>                           | 获取给定索引处的工作表名称。索引从 开始。如果名称采用 ANSI 格式，则返回。<code class="docutils literal notranslate"><span class="pre">0``0</span></code>                                                                                                                          |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">GetSheetName(size_t</span> <span class="pre">sheetIndex,</span> <span class="pre">char*</span> <span class="pre">name)</span></code>                          | 获取给定索引处的工作表名称。索引从 开始。如果名称采用 Unicode 格式，则返回。<code class="docutils literal notranslate"><span class="pre">0``false</span></code>                                                                                                                   |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">GetSheetName(size_t</span> <span class="pre">sheetIndex,</span> <span class="pre">wchar_t*</span> <span class="pre">name)</span></code>                       | 获取给定索引处的工作表名称。索引从 0 开始。如果名称采用 ANSI 格式，则返回。<code class="docutils literal notranslate"><span class="pre">false</span></code>                                                                                                                       |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">RenameWorksheet(size_t</span> <span class="pre">sheetIndex,</span> <span class="pre">const</span> <span class="pre">char*</span> <span class="pre">to)</span></code>                   | 将给定索引处的 Excel 工作表重命名为给定的 ANSI 名称。索引从 开始。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">0``true</span> <span class="pre">``false</span></code>                                                                                          |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">RenameWorksheet(size_t</span> <span class="pre">sheetIndex,</span> <span class="pre">const</span> <span class="pre">wchar_t*</span> <span class="pre">to)</span></code>                | 将给定索引处的 Excel 工作表重命名为给定的 Unicode 名称。索引从 开始。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">0``true</span> <span class="pre">``false</span></code>                                                                                       |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">RenameWorksheet(const</span> <span class="pre">char*</span> <span class="pre">from,</span> <span class="pre">const</span> <span class="pre">char*</span> <span class="pre">to)</span></code>                    | 将已指定 ANSI 名称的 Excel 工作表重命名为另一个 ANSI 名称。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">``false</span></code>                                                                                                    |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">RenameWorksheet(const</span> <span class="pre">wchar_t*</span> <span class="pre">from,</span> <span class="pre">const</span> <span class="pre">wchar_t*</span> <span class="pre">to)</span></code>              | 将已指定 Unicode 名称的 Excel 工作表重命名为另一个 Unicode 名称。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">``false</span></code>                                                                                              |</p>
+</section>
+<section id="id3">
+<h3>类基本Excel工作表<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h3>
+<p>| <code class="docutils literal notranslate"><span class="pre">char*</span> <span class="pre">GetAnsiSheetName()</span></code>                                             | 获取当前工作表名称。如果名称采用 Unicode 格式，则返回。<code class="docutils literal notranslate"><span class="pre">0</span></code>                                                                                 |
+| ———————————————————————- | —————————————————————————————————————————————— |
+| <code class="docutils literal notranslate"><span class="pre">wchar_t*</span> <span class="pre">GetUnicodeSheetName()</span></code>                                       | 获取当前工作表名称。如果名称采用 ANSI 格式，则返回。<code class="docutils literal notranslate"><span class="pre">0</span></code>                                                                                    |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">GetSheetName(char*</span> <span class="pre">name)</span></code>                                        | 获取当前工作表名称。如果名称采用 Unicode 格式，则返回。<code class="docutils literal notranslate"><span class="pre">false</span></code>                                                                             |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">GetSheetName(wchar_t*</span> <span class="pre">name)</span></code>                                     | 获取当前工作表名称。如果名称采用 ANSI 格式，则返回。<code class="docutils literal notranslate"><span class="pre">false</span></code>                                                                                |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Rename(const</span> <span class="pre">char*</span> <span class="pre">to)</span></code>                                          | 将当前 Excel 工作表重命名为另一个 ANSI 名称。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">``false</span></code>                                                    |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Rename(const</span> <span class="pre">wchar_t*</span> <span class="pre">to)</span></code>                                       | 将当前 Excel 工作表重命名为另一个 Unicode 名称。如果成功，则返回，否则返回。<code class="docutils literal notranslate"><span class="pre">true</span> <span class="pre">``false</span></code>                                                 |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">Print(ostream&amp;</span> <span class="pre">os,</span> <span class="pre">char</span> <span class="pre">delimiter=',',</span> <span class="pre">char</span> <span class="pre">textQualifier='\0')</span></code> | 将整个工作表打印到输出流，使用定义的分隔符分隔每一列，并使用定义的 .如果不希望有任何文本限定符，请省略参数。<code class="docutils literal notranslate"><span class="pre">textQualifier``textQualifier</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">size_t</span> <span class="pre">GetTotalRows()</span></code>                                                | 当前 Excel 工作表中的总行数。                                                                                                              |
+| <code class="docutils literal notranslate"><span class="pre">size_t</span> <span class="pre">GetTotalCols()</span></code>                                                | 当前 Excel 工作表中的列总数。                                                                                                              |
+| <code class="docutils literal notranslate"><span class="pre">BasicExcelCell*</span> <span class="pre">Cell(size_t</span> <span class="pre">row,</span> <span class="pre">size_t</span> <span class="pre">col)</span></code>                         | 返回指向 Excel 单元格的指针。行和列从 开始。如果行超过 65535 或列超过 255，则返回。<code class="docutils literal notranslate"><span class="pre">0``0</span></code>                                                  |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">EraseCell(size_t</span> <span class="pre">row,</span> <span class="pre">size_t</span> <span class="pre">col)</span></code>                               | 擦除单元格的内容。行和列从 开始。如果成功，如果行或列超出范围，则返回。<code class="docutils literal notranslate"><span class="pre">0``true</span> <span class="pre">``false</span></code>                                                   |</p>
+</section>
+<section id="basicexcelcell">
+<h3>类 BasicExcelCell<a class="headerlink" href="#basicexcelcell" title="此标题的永久链接"></a></h3>
+<p>| <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">Type()</span> <span class="pre">const</span></code>                                             | 获取存储在当前 Excel 单元格中的值的类型。返回以下枚举之一：、。<code class="docutils literal notranslate"><span class="pre">UNDEFINED``INT``DOUBLE``STRING``WSTRING</span></code> |
+| ————————————————————– | ——————————————————————————————————– |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Get(int&amp;</span> <span class="pre">val)</span> <span class="pre">const</span></code>                                     | 获取一个值。如果单元格不包含 .<code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">``false</span> <span class="pre">``integer</span></code>                                                |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Get(double&amp;</span> <span class="pre">val)</span> <span class="pre">const</span></code>                                  | 获取一个值。如果单元格不包含 .<code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">``false</span> <span class="pre">``double</span></code>                                                  |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Get(char*</span> <span class="pre">str)</span> <span class="pre">const</span></code>                                    | 获取 ANSI 字符串。如果单元格不包含 ANSI 则返回。<code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">``string</span></code>                                         |
+| <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">Get(wchar_t*</span> <span class="pre">str)</span> <span class="pre">const</span></code>                                 | 获取一个 Unicode 字符串。如果单元格不包含 Unicode 则返回。<code class="docutils literal notranslate"><span class="pre">false</span> <span class="pre">``string</span></code>                               |
+| <code class="docutils literal notranslate"><span class="pre">size_t</span> <span class="pre">GetStringLength()</span></code>                                     | 返回 ANSI 或 Unicode 字符串的长度（不包括字符）。<code class="docutils literal notranslate"><span class="pre">null</span></code>                                                  |
+| <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">GetInteger()</span> <span class="pre">const</span></code>                                       | 获取一个值。如果单元格不包含 .<code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">``0``integer</span></code>                                                     |
+| <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">GetDouble()</span> <span class="pre">const</span></code>                                     | 获取一个值。如果单元格不包含 .<code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">``0``.&lt;code&gt;0``double</span></code>                                             |
+| <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">char*</span> <span class="pre">GetString()</span> <span class="pre">const</span></code>                                | 获取 ANSI .如果单元格不包含 ANSI 则返回。<code class="docutils literal notranslate"><span class="pre">string``0``string</span></code>                                             |
+| <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">wchar_t*</span> <span class="pre">GetWString()</span> <span class="pre">const</span></code>                            | 获取一个统一码。如果单元格不包含 Unicode 则返回。<code class="docutils literal notranslate"><span class="pre">string``0``string</span></code>                                     |
+| <code class="docutils literal notranslate"><span class="pre">ostream&amp;</span> <span class="pre">operator&lt;&lt;(ostream&amp;</span> <span class="pre">os,</span> <span class="pre">const</span> <span class="pre">BasicExcelCell&amp;</span> <span class="pre">cell)</span></code> | 打印要输出的单元格。如果未定义单元格，则打印空字符。<code class="docutils literal notranslate"><span class="pre">stream</span></code>                                             |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">Set(int</span> <span class="pre">val)</span></code>                                            | 将当前 Excel 单元格的内容设置为 .<code class="docutils literal notranslate"><span class="pre">integer</span></code>                                                               |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">Set(double</span> <span class="pre">val)</span></code>                                         | 将当前 Excel 单元格的内容设置为 .<code class="docutils literal notranslate"><span class="pre">double</span></code>                                                                |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">Set(const</span> <span class="pre">char*</span> <span class="pre">str)</span></code>                                    | 将当前 Excel 单元格的内容设置为 ANSI 。<code class="docutils literal notranslate"><span class="pre">string</span></code>                                                          |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">Set(const</span> <span class="pre">wchar_t*</span> <span class="pre">str)</span></code>                                 | 将当前 Excel 单元格的内容设置为 Unicode g。<code class="docutils literal notranslate"><span class="pre">strin</span></code>                                                       |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">SetInteger(int</span> <span class="pre">val)</span></code>                                     | 将当前 Excel 单元格的内容设置为 .<code class="docutils literal notranslate"><span class="pre">integer</span></code>                                                               |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">SetDouble(double</span> <span class="pre">val)</span></code>                                   | 将当前 Excel 单元格的内容设置为 .<code class="docutils literal notranslate"><span class="pre">double</span></code>                                                                |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">SetString(const</span> <span class="pre">char*</span> <span class="pre">str)</span></code>                              | 将当前 Excel 单元格的内容设置为 ANSI 。<code class="docutils literal notranslate"><span class="pre">string</span></code>                                                          |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">SetWString(const</span> <span class="pre">wchar_t*</span> <span class="pre">str)</span></code>                          | 将当前 Excel 单元格的内容设置为 Unicode 。<code class="docutils literal notranslate"><span class="pre">string</span></code>                                                       |
+| <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">EraseContents()</span></code>                                         | 擦除当前Excel单元格的内容。将类型设置为 。<code class="docutils literal notranslate"><span class="pre">UNDEFINED</span></code>                                                    |</p>
+</section>
+</section>
+<section id="id4">
+<h2>示例代码<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;BasicExcel.hpp&quot;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">YExcel</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">BasicExcel</span><span class="w"> </span><span class="n">e</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Load a workbook with one sheet, display its contents and</span>
+<span class="w">  </span><span class="c1">// save into another file.</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s">&quot;example1.xls&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">BasicExcelWorksheet</span><span class="o">*</span><span class="w"> </span><span class="n">sheet1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">GetWorksheet</span><span class="p">(</span><span class="s">&quot;Sheet1&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sheet1</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">maxRows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet1</span><span class="o">-&gt;</span><span class="n">GetTotalRows</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">maxCols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet1</span><span class="o">-&gt;</span><span class="n">GetTotalCols</span><span class="p">();</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Dimension of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sheet1</span><span class="o">-&gt;</span><span class="n">GetAnsiSheetName</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">        </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">maxRows</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">maxCols</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">&lt;</span><span class="n">maxCols</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%10d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">&lt;</span><span class="n">maxRows</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">r</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%10d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">&lt;</span><span class="n">maxCols</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">BasicExcelCell</span><span class="o">*</span><span class="w"> </span><span class="n">cell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet1</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">Type</span><span class="p">())</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="no">BasicExcelCell</span><span class="o">::</span><span class="no">UNDEFINED</span><span class="p">:</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="no">BasicExcelCell</span><span class="o">::</span><span class="no">INT</span><span class="p">:</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%10d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">GetInteger</span><span class="p">());</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="no">BasicExcelCell</span><span class="o">::</span><span class="no">DOUBLE</span><span class="p">:</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%10.6lf&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">GetDouble</span><span class="p">());</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="no">BasicExcelCell</span><span class="o">::</span><span class="no">STRING</span><span class="p">:</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%10s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">GetString</span><span class="p">());</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+
+<span class="w">          </span><span class="k">case</span><span class="w"> </span><span class="no">BasicExcelCell</span><span class="o">::</span><span class="no">WSTRING</span><span class="p">:</span>
+<span class="w">            </span><span class="n">wprintf</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;%10s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">GetWString</span><span class="p">());</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">SaveAs</span><span class="p">(</span><span class="s">&quot;example2.xls&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Create a new workbook with 2 worksheets and write some contents.</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">New</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">RenameWorksheet</span><span class="p">(</span><span class="s">&quot;Sheet1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Test1&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">BasicExcelWorksheet</span><span class="o">*</span><span class="w"> </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">GetWorksheet</span><span class="p">(</span><span class="s">&quot;Test1&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">BasicExcelCell</span><span class="o">*</span><span class="w"> </span><span class="n">cell</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sheet</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="n">cell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="w">      </span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">Set</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">cell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cell</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">3.141592654</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetString</span><span class="p">(</span><span class="s">&quot;Test str1&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetString</span><span class="p">(</span><span class="s">&quot;Test str2&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetString</span><span class="p">(</span><span class="s">&quot;Test str1&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">1.1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">2.2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">3.3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">4.4</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">5.5</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">EraseContents</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">AddWorksheet</span><span class="p">(</span><span class="s">&quot;Test2&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">GetWorksheet</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sheet</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">1.1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">2.2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">3.3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">4.4</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">SetDouble</span><span class="p">(</span><span class="mf">5.5</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">SaveAs</span><span class="p">(</span><span class="s">&quot;example3.xls&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Load the newly created sheet and display its contents</span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="n">Load</span><span class="p">(</span><span class="s">&quot;example3.xls&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">maxSheets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">GetTotalWorkSheets</span><span class="p">();</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total number of worksheets: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">GetTotalWorkSheets</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">maxSheets</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">BasicExcelWorksheet</span><span class="o">*</span><span class="w"> </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">GetWorksheet</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sheet</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="kt">size_t</span><span class="w"> </span><span class="n">maxRows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">GetTotalRows</span><span class="p">();</span>
+<span class="w">      </span><span class="kt">size_t</span><span class="w"> </span><span class="n">maxCols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">GetTotalCols</span><span class="p">();</span>
+<span class="w">      </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Dimension of &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">GetAnsiSheetName</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span>
+<span class="w">         </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">maxRows</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">maxCols</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxRows</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">&lt;</span><span class="n">maxCols</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%10d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">r</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">&lt;</span><span class="n">maxRows</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">r</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%10d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">&lt;</span><span class="n">maxCols</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">c</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Cell</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">c</span><span class="p">));</span>
+<span class="w">        </span><span class="c1">// Another way of printing a cell content.</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ofstream</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="s">&quot;example4.csv&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">sheet</span><span class="o">-&gt;</span><span class="n">Print</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;,&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;\&quot;&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Save the first sheet as a CSV file.</span>
+<span class="w">        </span><span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="1%20Drogen.html" class="btn btn-neutral float-left" title="Drogen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="3%20VCPKG.html" class="btn btn-neutral float-right" title="VCPKG" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2023, db.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

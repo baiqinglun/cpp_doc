@@ -1,0 +1,275 @@
+# 类模板
+## 1、类模板语法
+1. 类模板和函数模板相似；
+```c
+#include<iostream>
+using namespace std;
+template<class nameType,class ageType>
+class Person
+{
+public:
+	Person(nameType _name, ageType _age)
+	{
+		name = _name;
+		age = _age;
+	}
+	nameType name;
+	ageType age;
+	void showDetail()
+	{
+		cout << "名字是" << name <<" 年龄是" << age << endl;
+	}
+};
+void test01()
+{
+	Person<string, int> p1("孙悟空", 21);
+	p1.showDetail();
+}
+int main()
+{
+	test01();
+}
+```
+
+## 2、类模板和函数模板的区别
+1. 类模板没有自动类型推导，只能显式指定；
+2. 类模板在模板参数列表中可以有默认参数；
+**默认参数**
+```c
+template<class nameType,class ageType = int>
+```
+使用
+```c
+Person<string> p1("猪八戒", 25);
+```
+> 这里就不需要指定数据类型
+
+## 3、类模板中的成员函数创建时机
+1. 使用的时候才会创建；
+```c
+// 创建两个类
+class Person1
+{
+public:
+	void showPerson1()
+	{
+		cout << "我是Perosn1" << endl;
+	}
+};
+class Person2
+{
+public:
+	void showPerson2()
+	{
+		cout << "我是Perosn2" << endl;
+	}
+};
+// 使用函数模板调用两个类的函数
+template<class T>
+class myClass
+{
+public:
+	T obj;
+	void f1()
+	{
+		obj.showPerson1();
+	}
+	void f2()
+	{
+		obj.showPerson2();
+	}
+};
+```
+> 上面这套代码能运行成功，因为函数模板中的函数因为没有使用还未创建；
+测试
+```c
+myClass<Person1> p1;
+//p1.f1();
+//p1.f2();
+```
+> 这样也能编译成功，因为成员函数还未创建
+```c
+myClass<Person1> p1;
+p1.f1();
+//p1.f2();
+```
+> 传入`Person1`时只能调用`f1`，因为指定了函数模板参数类型，也就创建了里面的成员函数；
+
+## 4、类模板做函数参数
+三种传入方式
+- 指定传入的数据类型  --直接显示对象的数据类型；
+- 参数模板化                 --将对象中的参数变为模板进行传递；
+- 整个类模板                 --将这个对象类型 模板化后进行传递；
+> 查看类型`typeid(模板数据类型).name()`
+**测试1**
+```c
+//-指定传入的数据类型  --直接显示对象的数据类型；
+void printPerson1(Person<string,int>&p)
+{
+    p.showDetail();
+}
+void test01()
+{
+    Person<string, int>p("孙悟空", 21);
+    printPerson1(p);
+}
+```
+**测试2**
+```c
+//- 参数模板化         --将对象中的参数变为模板进行传递；
+template<class nameType,class ageType>
+void printPerson2(Person<nameType, ageType>& p)
+{
+    p.showDetail();
+}
+void test02()
+{
+    Person<string, int>p("猪八戒", 22);
+    printPerson1(p);
+}
+```
+**测试3**
+```c
+//- 整个类模板         --将这个对象类型 模板化后进行传递；
+template<class T>
+void printPerson3( T& p)
+{
+    p.showDetail();
+}
+void test03()
+{
+    Person<string, int>p("唐僧", 22);
+    printPerson1(p);
+}
+```
+> 最常用的是1
+
+## 5、类模板与继承
+注意：
+- 当子类继承的父类是一个类模板时，子类在声明的时候，要指定出父类中的T的类型；
+- 如果不指定，编译器无法给子类分配空间；
+- 如果想灵活指出父类中的T类型，子类也粗要变为类模板；
+**测试2**
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220501213329431.png#crop=0&crop=0&crop=1&crop=1&id=ZSfRk&originHeight=1007&originWidth=1837&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**代码**
+```c
+#include <iostream>
+using namespace std;
+template<class T>
+class Base
+{
+	T m;
+};
+ //必须知道父类中T的数据类型才能继承子类
+//class Son :public Base
+class Son1 :public Base<int>  // 这里就告诉子类父类中的T是int类型
+{
+};
+// 如果想要灵活的指定父类中T的数据类型，子类也需要变为类模板
+template<class T1,class T2>
+class Son2 :public Base<T2>
+{
+	T1 obj;
+};
+void test01()
+{
+	Son2<int,char>s;
+}
+int main()
+{
+}
+```
+
+## 6、类模板成员函数类外实现
+1. 构造函数的类外实现；
+```c
+// 构造函数的类外实现
+template<class T1,class T2>
+Person<T1,T2>::Person(T1 name, T2 age)
+{
+	this->name = _name;
+	this->age = _age;
+}
+```
+2. 成员函数的类外实现；
+```c
+// 成员函数的类外实现
+template<class T1, class T2>
+void Person<T1, T2>::showPerson()
+{
+	cout << "姓名是" << this->name << endl;
+	cout << "年龄是" << this->age << endl;
+}
+```
+**代码**
+```c
+#include <iostream>
+#include<string>
+using namespace std;
+template<class T1, class T2>
+class Person
+{
+public:
+	Person(T1 _name, T2 _age);
+	void showPerson();
+	T1 name;
+	T2 age;
+};
+// 构造函数的类外实现
+template<class T1,class T2>
+Person<T1,T2>::Person(T1 name, T2 age)
+{
+	this->name = _name;
+	this->age = _age;
+}
+// 成员函数的类外实现
+template<class T1, class T2>
+void Person<T1, T2>::showPerson()
+{
+	cout << "姓名是" << this->name << endl;
+	cout << "年龄是" << this->age << endl;
+}
+```
+
+## 7、分文见编写
+.h
+```c
+#pragma once
+#include<iostream>
+using namespace std;
+#include<string>
+template<class T1, class T2>
+class Person
+{
+public:
+	Person(T1 name, T2 age);
+	void showPerson();
+	T1 name;
+	T2 age;
+};
+```
+.cpp
+```c
+#include"person.h"
+template<class T1, class T2>
+Person<T1, T2>::Person(T1 name, T2 age)
+{
+	this->name = name;
+	this->age = age;
+}
+template<class T1, class T2>
+void Person<T1, T2>::showPerson()
+{
+	cout << "姓名是" << this->name << endl;
+	cout << "年龄是" << this->age << endl;
+}
+```
+> 但是在使用时会出错，因为类模板中函数生成时间问题；
+解决方案1
+```c
+// 第一种解决方式，改为.cpp
+#include "person.cpp"
+```
+> 在使用文件中
+解决方案2
+> 将.h和.cpp写在一起，后缀改为.hpp

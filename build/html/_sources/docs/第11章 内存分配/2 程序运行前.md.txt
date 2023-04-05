@@ -1,0 +1,49 @@
+# 程序运行前
+在程序编译后，生成了exe可执行程序，未执行该程序前分为两个区域
+代码区：
+1. 存放CPU执行的机器指令
+2. 代码区具共享的，共享的目的是对于频繁被执行的程序，只需要在内存中有一份代码即可
+3. 代码区只读的，使其只读的原因是防止程序意外地修改了它的指令
+全局区：
+1. 全局变量和静态变量存放在此，
+2. 全局区还包含了常量区，字符串常量和其他常量也存放在此
+3. 该区域的数据在程序结束后由操作系统释放，
+> 怎么理解全局区的地址呢？代码演示
+```c
+#include<iostream>
+using namespace std;
+int g_a = 10;
+int g_b = 10;
+const int c_g_a = 10;
+const int c_g_b = 10;
+int main() {
+	// 全局区
+	// 全局变量、静态变量、常量
+	// 局部变量
+	int l_a = 10;
+	int l_b = 10;
+	// 静态变量，用static修饰的
+	static int s_l_a = 10;
+	static int s_l_b = 10;
+	// 常量
+	// 字符串常量和const修饰的变量
+	const int c_l_a = 10;
+	const int c_l_b = 10;
+	// 输出地址
+	cout << "局部变量l_a的地址是：" << int(&l_a)  << endl;
+	cout << "局部变量l_b的地址是：" << int( & l_b) << endl;
+	cout << "全局变量g_a的地址是：" << int( & g_a) << endl;
+	cout << "全局变量g_b的地址是：" << int( & g_b) << endl;
+	cout << "静态变量s_l_a的地址是：" << int( & s_l_a) << endl;
+	cout << "静态变量s_l_b的地址是：" << int( & s_l_b) << endl;
+	cout << "字符串常量的地址是：" << int( & "Hello") << endl;
+	cout << "const局部常量c_l_a的地址是：" << int( & c_l_a) << endl;
+	cout << "const局部常量c_l_b的地址是：" << int( & c_l_b) << endl;
+	cout << "const全局常量c_g_a的地址是：" << int( & c_g_a) << endl;
+	cout << "const全局常量c_g_b的地址是：" << int( & c_g_b) << endl;
+}
+```
+![800](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/yCeTOHuSNRw1IYU.png#crop=0&crop=0&crop=1&crop=1&id=PPolo&originHeight=788&originWidth=1793&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+局部变量和const局部常量在一起
+全局变量、静态变量、字符串常量、全局常量在一起
+![800](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/LC6VPZW3ntyMxsJ.png#crop=0&crop=0&crop=1&crop=1&id=DBCD0&originHeight=421&originWidth=1224&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)

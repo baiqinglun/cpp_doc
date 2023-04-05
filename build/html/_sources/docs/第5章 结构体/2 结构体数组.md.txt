@@ -1,0 +1,40 @@
+# 结构体数组
+1. `struct Student stuArray[2] = {{"张三",18,60},{"李四",20,80}};`
+2. 索引从第0个开始
+
+```c
+#include<iostream>
+using namespace std;
+
+//1. 定义结构体
+struct Student {
+	string name;
+	int age;
+	double score;
+};
+
+
+int main()
+{
+	//2. 创建结构体数组
+	struct Student stuArray[3] = {
+		{"张三",18,20},
+		{"李四",18,20},
+		{"王五",18,20},
+	};
+
+	//3. 赋值
+	stuArray[2].name = "赵六";
+	stuArray[2].age = 20;
+	stuArray[2].score = 30;
+
+	//4. 遍历
+	for (int i = 0; i < 3; i++) {
+		cout << stuArray[i].name << "\t" << stuArray[i].age << "\t" << stuArray[i].score << endl;
+	}
+
+
+}
+```
+
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/dXKQRcAVmEWfrhx.png#crop=0&crop=0&crop=1&crop=1&id=mjoK4&originHeight=767&originWidth=1470&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)

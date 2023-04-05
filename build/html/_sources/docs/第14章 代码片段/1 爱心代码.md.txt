@@ -1,0 +1,188 @@
+# 爱心代码
+
+```c++
+#include<iostream>
+#include<conio.h> // 通过控制台进行数据输入和数据输出的函数，主要是一些用户通过按键盘产生的对应操作
+#include<graphics.h> // 图形库
+#include<time.h> // 时间函数
+
+// 组成爱心的点
+struct Point
+{
+	double x, y; // 坐标
+	COLORREF color; // 颜色
+};
+
+COLORREF colors[7] = { RGB(255,32,83),RGB(252,555,250),RGB(255,0,0),RGB(255,2,2), RGB(255,0,8),RGB(255,5,5) }; // 颜色数组
+const int xScreen = 1200; // 屏幕宽度
+const int yScreen = 800; // 屏幕高度
+const double PI = 3.1415926535; // 圆周率
+const double e = 2.71828; // 自然数e
+const double averag_distance = 0.162; // 弧度以0.01增长时，原始参数方程中每个点的平均距离
+const int quantity = 506; // 一个爱心所需要点的数量
+const int circles = 210; // 一个爱心主体上圆线的个数。比如画一个圆，画不同210个大小的圆可达到填充效果
+const int frames = 20; // 爱心扩展一次的帧数
+Point origin_points[quantity]; // 保存原始爱心数据的数组
+Point points[circles * quantity]; // 保存所有爱心数据的数组
+IMAGE images[frames]; // 图片数组
+
+
+// 坐标转换函数：将数学坐标转换为屏幕坐标，绘图函数使用的是屏幕坐标
+double screen_x(double x)
+{
+	x += xScreen / 2;
+	return x;
+}
+
+double screen_y(double y)
+{
+	y = -y + yScreen / 2;
+	return y;
+}
+
+int create_random(int x1, int x2)
+{
+	if (x2 > x1)
+		return rand() % (x2 - x1 + 1) + x1;
+}
+
+// 产生数据
+void create_data()
+{
+	int index = 0;
+	// 保存相邻两点的坐标
+	double x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+	for (double radian = 0.1; radian <= 2 * PI; radian += 0.005)
+	{
+		// 爱心的参数方程
+		x2 = 16 * pow(sin(radian), 3);
+		y2 = 13 * cos(radian) - 5 * cos(2 * radian) - 2 * cos(3 * radian) - cos(4 * radian);
+		//std::cout << "x2=" << x2 << ",y2=" << y2 << std::endl;
+		// 计算两点之间的距离
+		double distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+		// 只有当两点之间的距离大于平均距离才会保存这个点（删除过于密集的点）
+		if (distance > averag_distance)
+		{
+			origin_points[index].x = x2;
+			origin_points[index].y = y2;
+			x1 = x2, y1 = y2;
+			//std::cout << "x1=" << origin_points[index].x << ",y1=" << origin_points[index].y << std::endl;
+			index++;
+		}
+	}
+
+	index = 0;
+	for (double size = 0.1; size <= 20; size += 0.1)
+	{
+		// 使用sigmoid函数计算当前系数的成功概率
+		// 如果100个成功的概率为90%，则会有90个点被保存下来
+		double success_p = 1 / (1 + pow(e, 8 - size / 2));
+
+		// 遍历所有爱心数量
+		for (int i = 0; i < quantity; ++i)
+		{
+			// 使用概率对数据机型筛选，create_random产生两个数之间的随机数
+			if (success_p > create_random(0, 100) / 100.0)
+			{
+				points[index].color= colors[create_random(0, 6)]; // 随机获取颜色
+				// 原始数据乘以系数
+				points[index].x = size * origin_points[i].x + create_random(-4, 4);
+				points[index].y = size * origin_points[i].y + create_random(-4, 4);
+
+				//std::cout <<"x="<< points[index].x << "y=" << points[index].y << std::endl;
+				index++;
+			}
+		}
+	}
+
+	// index值就是当前points中保存了结构体的数据
+	int points_size = index;
+	//std::cout << points_size << std::endl;
+	for (int frame = 0; frame < frames; ++frame)
+	{
+		images[frame] = IMAGE(xScreen, yScreen); // images中保存了20张图片，图片设置高度和宽度
+		SetWorkingImage(&images[frame]); // 把当前图像设置为工作图像
+
+		for (index = 0; index < points_size; ++index)
+		{
+			double x = points[index].x, y = points[index].y;
+			double distance = sqrt(pow(x, 2) + pow(y, 2));
+			double distance_increase = -0.0009 * distance * distance + 0.35714 * distance + 5; // 运动的距离
+			// 目前帧的增长距离
+			double x_increase = distance_increase * x / distance / frames;
+			double y_increase = distance_increase * y / distance / frames;
+
+			// 使用现在数据覆盖掉原来的数据
+			points[index].x += x_increase;
+			points[index].y += y_increase;
+
+			// 提取当前点的颜色设置为绘画颜色
+			setfillcolor(points[index].color);
+			solidcircle(screen_x(points[index].x), screen_y(points[index].y),1);
+		}
+
+		// 外围闪动的点
+		for (double size = 17; size < 23; size += 0.1)
+		{
+			for (index = 0; index < quantity; ++index)
+			{
+				// 当系数大于等于20，通过的概率为40%，当系数小于20，通过概率为5%
+				if ((create_random(0, 100) / 100.0 > 0.6 && size >= 20) || (size < 20 && create_random(0, 100) / 100.0>0.95))
+				{
+					double x, y;
+					if (size >= 20)
+					{
+						x = origin_points[index].x * size + create_random(-frame * frame / 5 - 15, frame * frame / 5 + 15);
+						y = origin_points[index].y * size + create_random(-frame * frame / 5 - 15, frame * frame / 5 + 15);
+					}
+					else
+					{
+						x = origin_points[index].x * size + create_random(-5, 5);
+						y = origin_points[index].y * size + create_random(-5, 5);
+					}
+
+					setfillcolor(colors[create_random(0, 6)]);
+					solidcircle(screen_x(x), screen_y(y),1);
+				}
+			}
+		}
+	}
+
+
+}
+
+
+// 圆乘以不同的系数
+// 
+// 绘制外围闪动的随机点
+
+int main()
+{
+	initgraph(xScreen, yScreen); // 创建屏幕
+	BeginBatchDraw(); // 开始批量画图
+	srand(time(0)); // 初始化随机种子
+	create_data(); // 调用函数产生的20张图片
+	SetWorkingImage(); // 调用函数把工作图像恢复为窗口，没有添加参数默认为窗口
+
+	bool extend = true, shrink = false;
+	for (int frame = 0; !_kbhit();) // _kbhit 按键按下返回true，有按键则推出循环
+	{
+		putimage(0, 0, &images[frame]); // 播放第frame张图片
+		FlushBatchDraw(); // 刷新批量绘图
+		Sleep(20); // 延时20ms
+		cleardevice(); // 清除屏幕，播放下一帧
+
+		// 产生的数据只有正着扩展没有收缩，所以倒着播放图片可以产生收缩的效果
+		if (extend) // 扩展时
+			frame == 19 ? (shrink = true, extend = false): ++frame;
+		else
+			frame == 0 ? (shrink = false, extend = true): --frame;
+	}
+	EndBatchDraw(); // 关闭绘图
+	closegraph(); // 关闭绘图窗口
+
+	return 0;
+}
+
+
+```

@@ -1,0 +1,214 @@
+# 实例：Excel
+
+创建目录，包含操作excel的文件
+
+![image-20230206184121292](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061841342.png)
+
+```cmake
+# src/excel/CMakeLists.txt
+
+# 使用指定的源文件将库添加到项目中。
+add_library(excel STATIC BasicExcel.cpp)
+```
+
+
+
+```cmake
+# 添加子目录
+add_subdirectory(excel)
+```
+
+
+
+```cmake
+# 链接静态文件
+target_link_libraries(demo PUBLIC excel)
+```
+
+
+
+```cmake
+# 将包含目录到目标
+target_include_directories(demo PUBLIC
+                            ${PROJECT_BINARY_DIR}
+                            ${PROJECT_SOURCE_DIR}/excel
+                            )
+```
+
+
+
+案例
+
+```c++
+//实例化一个表格对象
+	BasicExcel e;
+	//加载一个文件，
+	e.Load("test1.xls");
+	//指向"Sheet1"工作簿的指针
+	BasicExcelWorksheet* sheet1 = e.GetWorksheet("Sheet1");
+    double sum = 0;
+	if (sheet1)
+	{
+		//当前excel的总行数
+		size_t maxRows = sheet1->GetTotalRows();
+		//当前excel的总列数
+		size_t maxCols = sheet1->GetTotalCols();
+		//输出当前工作表名称(char)，采用unicode编码，没有则返回0.
+		cout << "Dimension of " << sheet1->GetAnsiSheetName() <<"(" <<maxRows << "," << maxCols << ")" << endl;
+		//制表
+		for (size_t c = 0; c < maxCols; ++c)
+			printf("%10d", c + 1);
+		cout << endl;
+		/*
+		要想得到EXCEL表格内的值，1、获取指向某行某列的指针类型为BasicExcelCell*
+								 2、根据调用的成员函数Type(),查看单元格内的数据类型
+								 3、根据数据类型的不同，选择不一样的获取数据的类函数
+		*/
+		for (size_t r = 0; r < maxRows; ++r)
+		{
+			printf("%d", r + 1);
+			for (size_t c = 0; c < maxCols; ++c)
+			{
+				//返回指向excel单元格的指针，行如果超过65535或列超过255，则返回00.
+				BasicExcelCell* cell = sheet1->Cell(r, c);
+				//获取单元格指针内容的类型
+				switch (cell->Type())
+				{
+					//undefined
+					case BasicExcelCell::UNDEFINED:
+						printf("          ");
+						break;
+					//int
+					case BasicExcelCell::INT:
+						printf("%10d", cell->GetInteger());		//获取值
+						break;
+					//double
+					case BasicExcelCell::DOUBLE:
+						printf("%10.6lf", cell->GetDouble());	//获取值
+						break;
+					//string
+					case BasicExcelCell::STRING:
+						printf("%10s", cell->GetString());		//获取值
+						break;
+					//wstrig
+					case BasicExcelCell::WSTRING:
+						wprintf(L"%10s", cell->GetWString());	//获取值
+						break;
+				}
+			}
+			std::cout << endl;
+		}
+		/*计算出第二列数据的总和，并替换单元格第二列最后一行的数据*/
+		for (int i = 1; i < maxRows; ++i)
+		{
+			BasicExcelCell* cell = sheet1->Cell(i, 1);
+			sum += cell->GetDouble();
+		}
+		BasicExcelCell* cell2 = sheet1->Cell(maxRows-1, 1);
+		cell2->Set(sum);
+		
+	}
+	std::cout << endl;
+	
+	//e.Save();
+	//将修改的文件保存为"test2.xls"
+	e.SaveAs("test2.xls");
+	//创建新的工作簿，此时打开的文件中有两个excel工作簿，分别为Sheet1，Sheet2.
+	e.New(2);
+	//将ANSI编码格式的EXCEL工作表重命名为另一个ANSI名称，成功返回true，失败返回false
+	e.RenameWorksheet("Sheet1", "city");
+	e.RenameWorksheet("Sheet2", "weather");
+	//创建类对象e的另一个工作簿
+	BasicExcelWorksheet* sheet2 = e.GetWorksheet("city");
+
+	if (sheet2)
+	{
+		//声明一个指向单元格块的指针
+		BasicExcelCell* cell;
+		//表格的表头
+		const char *title[4] = { "china", "english", "american", "japan" };
+		//向单元格添加表头
+		for (size_t c = 0; c < 4; ++c)
+		{
+			cell = sheet2->Cell(0, c+1);
+			cell->SetString(title[c]);
+		}
+		//向单元格添加列头
+		for (size_t r = 1; r < 9; ++r)
+			sheet2->Cell(r, 0)->Set((int)r);
+		//向表格内添加元素
+		double cont = 0.23;
+		for (size_t i = 0; i < 4; ++i)
+		{
+			for (size_t j = 0; j < 8; ++j)
+				sheet2->Cell( j + 1, i + 1)->SetDouble(cont++);
+		}
+	}
+	e.SaveAs("text3.xls");
+	
+	e.Load("text3.xls");
+	//得到当前文件内一共有多少工作簿
+	size_t maxSheets = e.GetTotalWorkSheets();
+	cout << "Total number of worksheets:" << e.GetTotalWorkSheets() << endl;
+	//对工作簿进行遍历
+	for (size_t i = 0; i < maxSheets; ++i)
+	{
+		//获取工作簿
+		BasicExcelWorksheet* sheet = e.GetWorksheet(i);
+		if (sheet)
+		{
+			//获取最大行列数
+			size_t maxRows = sheet->GetTotalRows();
+			size_t maxCols = sheet->GetTotalCols();
+			cout << "Dimension of " << sheet->GetAnsiSheetName() << "(" << maxRows << "," << maxCols << ")" << endl;
+
+			//列表
+			if (maxRows > 0)
+			{
+				for (size_t c = 0; c < maxCols; ++c)
+					printf("%10d", c );
+				cout << endl;
+			}
+			//打印表格内容
+			for (size_t r = 0; r < maxRows; ++r)
+			{
+				for (size_t c = 0; c < maxCols; ++c)
+				{
+					BasicExcelCell* cell = sheet->Cell(r, c);
+					switch (cell->Type())
+					{
+							//undefined
+						case BasicExcelCell::UNDEFINED:
+							printf("          ");
+							break;
+							//int
+						case BasicExcelCell::INT:
+							printf("%10d", cell->GetInteger());		//获取值
+							break;
+							//double
+						case BasicExcelCell::DOUBLE:
+							printf("%10.6lf", cell->GetDouble());	//获取值
+							break;
+							//string
+						case BasicExcelCell::STRING:
+							printf("%10s", cell->GetString());		//获取值
+							break;
+							//wstrig
+						case BasicExcelCell::WSTRING:
+							wprintf(L"%10s", cell->GetWString());	//获取值
+							break;
+					}
+				}
+				cout << endl;
+			}
+			//将文件以csv格式保存
+			if (i == 0)
+			{
+				ofstream f("text.csv");
+				sheet->Print(f, ',', '\0');
+				f.close();
+			}
+		}
+		cout << endl;
+	}
+```
