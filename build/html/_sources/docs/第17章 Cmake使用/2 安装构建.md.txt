@@ -1,7 +1,7 @@
 # 17.2 cmake安装
 https://blog.csdn.net/u011231598/article/details/80338941
 
-# 构建和运行
+## 构建和运行
 创建src源码文件和build编译文件
 
 ![image-20230206102032253](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061020300.png)
