@@ -19,7 +19,7 @@
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="搜索" href="../../search.html" />
     <link rel="next" title="16.1 Drogen" href="1%20Drogen.html" />
-    <link rel="prev" title="15.2 VScode配置gcc" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/2%20VScode%E9%85%8D%E7%BD%AEgcc.html" /> 
+    <link rel="prev" title="15.3 野指针" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/3%20%E9%87%8E%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -155,6 +155,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/index.html">第15章 技巧问题</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/1%20Clion%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.html">15.1 clion中文乱码</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/2%20VScode%E9%85%8D%E7%BD%AEgcc.html">15.2 VScode配置gcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/3%20%E9%87%8E%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98.html">15.3 野指针</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">第16章 框架使用</a><ul>
@@ -165,11 +166,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/index.html">第17章 Cmake使用</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html">17.1 简介</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html#id2">优势</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html#id3">持续集成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/1%20%E7%AE%80%E4%BB%8B.html#cmake">cmake工作原理</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/2%20%E5%AE%89%E8%A3%85%E6%9E%84%E5%BB%BA.html">17.2 cmake安装</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/2%20%E5%AE%89%E8%A3%85%E6%9E%84%E5%BB%BA.html#id1">构建和运行</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/3%20%E6%A6%82%E5%BF%B5.html">17.3 概念</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/4%20%E7%AE%80%E5%8D%95%E5%91%BD%E4%BB%A4.html">17.4 基本命令</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../%E7%AC%AC17%E7%AB%A0%20Cmake%E4%BD%BF%E7%94%A8/5%20%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E9%9D%99%E6%80%81%E5%BA%93.html">17.5 使用外部静态库</a></li>
@@ -224,7 +221,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
-        <a href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/2%20VScode%E9%85%8D%E7%BD%AEgcc.html" class="btn btn-neutral float-left" title="15.2 VScode配置gcc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../%E7%AC%AC15%E7%AB%A0%20%E6%8A%80%E5%B7%A7%E9%97%AE%E9%A2%98/3%20%E9%87%8E%E6%8C%87%E9%92%88%E9%97%AE%E9%A2%98.html" class="btn btn-neutral float-left" title="15.3 野指针" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
         <a href="1%20Drogen.html" class="btn btn-neutral float-right" title="16.1 Drogen" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
