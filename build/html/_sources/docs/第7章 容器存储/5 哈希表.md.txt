@@ -1,0 +1,123 @@
+# 7.5 哈希表
+
+## 1、基本含义
+![image-20221103234021323](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221103234021323.png)
+
+<strong style="color:#00b050;">哈希表</strong>
+哈希表长（桶个数）：数组的长度；
+哈希函数：size_t hash(const T &key){...// key%小于哈希表长的最大质数}
+装填因子：元素总长/表厂，其值越大，效率越低。
+
+1. 桶的个数太多浪费空间，太少会导致每个节点链表太长，效率低。
+
+## 2、unordered_map容器
+此容器封装了哈希表，查找、插入和删除，只需要比较几次key的值。数据有几万，可以用红黑树；数据千万，则使用哈希表。
+使用时包含头文件：#include<unordered_map>
+unordered_map容器的元素是pair键值对
+unordered_map类模板声明：
+
+```c++
+template<class K,class V,class _Hasher = hash<K>,class _Keyeq = equal_to<K>,class _Alloc = allocator<pair<const K,V>>>
+    class unordered_map : public _Hash<_Umap_traits<K,V,_Uhash_compare<K,_Hasher,_Keyeq>,_Alloc,false>>
+    {
+        ...
+    }
+```
+
+第一个参数K：key的数据类型（pair.first）
+第二个参数V：value的数据类型（pair.second）
+第三个参数_Hasher：哈希函数，默认值为`std::hash<K>`
+第四个参数_Keyeq：比较函数：用英语判断两个key是否相等，默认是std::equal_to`<K>`。
+第五个参数_Alloc：分配器，缺省用new和delete管理内存。
+
+创建std::unordered_map类模板别名：
+
+```c++
+template<class K,class V>
+using umap = std::unordered_map<K,V>
+```
+
+## 3、构造函数
+
+```c++
+1. umap(); 创建一个空umap
+2. umap(size_t bucket); 创建一个空的umap容器，指定桶的个数
+3. umap(initializer_list<pair<K,V>> il); 使用统一初始化列表
+4. umap(initializer_list<pair<K,V>> il, size_t bucket); 使用统一初始化列表，并指定桶个数
+5. umap(iterator first,iterator last); 用迭代器创建umap
+6. umap(iterator first,iterator last, size_t bucket); 用迭代器创建umap，并指定桶个数
+7. umap(initializer_list<pair<K,V>> &m); 拷贝构造函数
+8. 
+```
+
+代码演示
+
+```c++
+#include<iostream>
+#include<unordered_map>
+using namespace std;
+
+template<class K,class V>
+using umap = std::unordered_map<K, V>;
+
+int main()
+{
+	// 1. 创建一个空map
+	umap<string, string> m1;
+
+	// 2. 构造函数：列表初始化
+	umap<string, string> m2({ {"08","冰冰"},{"02","西施"}, {"05","密密"}, {"01","金莲"}, {"06","喜欢过"} });
+	cout << "m[08]=" << m2["08"]<< endl;
+	cout << "m[02]=" << m2.at("02") << endl;
+
+	// 3. 拷贝构造函数
+	umap<string, string> m3 = m2;
+
+
+	// 输出的时候会按顺序排列
+	for (auto& value : m3) cout << value.first << ":" << value.second << endl;
+	/* 输出
+	01:金莲
+	02 : 西施
+	05 : 密密
+	06 : 喜欢过
+	08 : 冰冰
+	*/
+
+	system("pause");
+	return 0;
+}
+```
+
+### 4、特性操作
+
+```c++
+1. size_t size() const; // 返回容器中元素的个数
+2. bool empty() const; // 判断容器是否为空
+3. void clear(); // 清空容器
+4. size_t max_bucket_count(); // 返回容器底层最多可以使用多少桶，无意义
+5. size_t bucket_count(); // 返回容器桶的个数
+6. size_t bucket_size(size_t n); // 返回第n个桶中的元素个数
+7. size_t bucket(K, &key); // 返回值为key的元素所对应的桶编号
+8. float load_factor(); // 返回容器的装填因子 load_factor() = size() / bucker_count();
+9. iterator begin(size_t n); // 返回第n个桶中第一个元素的迭代器
+10. iterator end(size_t n); // 返回第n个桶中最后一个元素尾后的迭代器
+11. void reserve(size_t n); // 将容器设置为至少n个桶，创建容器后设置
+12. void rehash(size_t n); // 将桶的 数量调整为>=n。如果n大于当前容器的桶数，该方法重新hash；如果小于，次方法没有用
+13. size_t bucket_size(size_t n); // 返回第n个桶中的元素个数
+14. size_t bucket(K &key); // 返回值为key的元素对应的桶编号
+```
+
+umap和vector一样，都可以自动扩展大小
+
+## 5、元素、赋值、交换、比较操作
+
+和map容器完全一样
+
+### 6、查找操作
+
+比map少了2个函数
+
+### 7、插入和删除
+
+和map容器完全一样

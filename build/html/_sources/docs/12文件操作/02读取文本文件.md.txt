@@ -1,0 +1,44 @@
+# 读取文本文件
+1. 包含头文件
+`#ifstream<fstream>`
+2. 创建流对象
+`ifstream ifs`
+3. 打开文件并判断是否打开成功
+`ifs.open("文件路径",打开方式)`
+4.  读数据
+5.  关闭文件
+`ifs.close()`
+> 注意
+>
+> 1. 判断文件是否可读
+> 2. 4种读入方式
+```c
+// 第一种方式
+char buf[1024] = { 0 };
+while (ifs >> buf)
+{
+	cout << "a" << endl;
+	cout << buf << endl;
+}
+// 第二种方式
+char buf2[1024] = { 0 };
+while (ifs.getline(buf2, sizeof(buf2)))
+{
+	cout << "b" << endl;
+	cout << buf2 << endl;
+}
+// 第三种方式
+string buf3;
+// 这里得加上string头文件，否则会报错
+while (getline(ifs, buf3))
+{
+	cout << "c" << endl;
+	cout << buf3 << endl;
+}
+// 第四种
+// 读取字符串，读一个输出一个一直读到文件尾，不建议使用
+char c;
+while ((c = ifs.get()) != EOF) //EOF end of file
+{
+    cout << c;
+}

@@ -1,0 +1,209 @@
+# 17.4 基本命令
+## project
+
+设置项目名
+
+```bash
+project(<PROJECT-NAME> [<language-name>...])
+project(<PROJECT-NAME>
+		[VERSION <major>[.<minor>[].<patch>[.<tweak>]]])
+		[LANGUAGES <language-name>...]
+		
+		
+# 项目名会被存储在变量 PROJECT_NAME 和 CMAKE_PROJECT_NAME中
+# PROJECT_SOURCE_DIR 等价于 <project-name>_SOURCE_DIR
+# 可使用message函数输出
+message(${PROJECT_NAME})
+message(${PROJECT_SOURCE_DIR})
+message(${demo_SOURCE_DIR})
+```
+
+![image-20230206104853988](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061048030.png)
+
+![image-20230206105023098](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061050130.png)
+
+
+
+## add_executable
+
+```bash
+add_executable(<name> [WIN32] [MACOSX_BUNDLE]
+               [EXCLUDE_FROM_ALL]
+               [source1] [source2 ...])
+# <name>为可执行文件的名字，与项目名称无关
+# win会生成<name>.exe文件
+
+# 如：
+add_executable(demo main.cpp)
+```
+
+
+
+## message
+
+```bash
+message([<mode>] "message text" ...)
+# 如：
+message(STATUS "${PROJECT_VERSION_MAJOR}")
+```
+
+
+
+
+
+## set
+
+设置变量
+
+```bash
+set(<variable> <value>... [PARENT_SCOPE])
+
+# 如：
+set(a 1)
+```
+
+ 
+
+设置c++标准
+
+```bash
+set(CMAKE_CXX_STANDARD 11)
+```
+
+
+
+设置输出目录
+
+```bash
+# 设置exe文件出书目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# 设置存档目标文件的输出目录
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+```
+
+![image-20230206110055402](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061100444.png)
+
+
+
+## option
+
+定义一个开关
+
+```bash
+option(<variable> "<help_text>" [value])
+
+# value的值为ON 或者 OFF，默认为OFF
+# 如：
+option(VERSION_ENABLE "output version" ON)
+```
+
+
+
+## configure_file
+
+将输入文件进行替换并生成输出文件
+
+```bash
+configure_file(<input> <output>
+               [NO_SOURCE_PERMISSIONS | USE_SOURCE_PERMISSIONS |
+                FILE_PERMISSIONS <permissions>...]
+               [COPYONLY] [ESCAPE_QUOTES] [@ONLY]
+               [NEWLINE_STYLE [UNIX|DOS|WIN32|LF|CRLF] ])
+
+# 输入文件中的 @VAR@ 或 ${VAR} 的字符串会被替换成这些变量的当前值，未定义则是空字符串
+```
+
+config.h.in
+
+```c
+#define PROJECT_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define PROJECT_VERSION_MINOR @PROJECT_VERSION_MINOR@
+```
+
+编译后
+
+config.h
+
+```c
+#define PROJECT_VERSION_MAJOR 1
+#define PROJECT_VERSION_MINOR 0
+```
+
+
+
+```bash
+#cmakedefine VAR
+// 会被替换成一下两者之一，取决于VAR是否被设置
+#define VAR
+#undef VAR
+```
+
+![image-20230206150448125](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061504200.png)
+
+![image-20230206150402269](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061504341.png)
+
+
+
+## include_directories
+
+将给定的目录添加到编译器用于搜索包含文件的目录中。
+
+```bash
+include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])
+
+# 目录会被添加到当前文件的 INCLUDE_DIRECTORIES 属性中
+# 当前文件的每一个目标文件的INCLUDE_DIRECTORIES 属性也会添加该目录
+```
+
+## target_include_directories
+
+将包含目录添加到目标。
+
+```bash
+target_include_directories(<target> [SYSTEM] [AFTER|BEFORE]
+  <INTERFACE|PUBLIC|PRIVATE> [items1...]
+  [<INTERFACE|PUBLIC|PRIVATE> [items2...] ...])
+
+# 目标文件有 INCLUDE_DIRECTORIES 和 INTERFACE_INCLUDE_DIRECTORIES 两个属性
+# INCLUDE_DIRECTORIES 对内头文件目录
+# INTERFACE_INCLUDE_DIRECTORIES 对外头文件目录
+
+# 包含src目录到目标
+target_include_directories(demo PUBLIC "${PROJECT_BINARY_DIR}")
+target_include_directories(demo INTERFACE "${PROJECT_BINARY_DIR}")
+target_include_directories(demo PUBLIC "${PROJECT_BINARY_DIR}")
+```
+
+|           | INCLUDE_DIRECTORIES | INTERFACE_INCLUDE_DIRECTORIES |
+| :-------: | :-----------------: | :---------------------------: |
+|  PRIVATE  |          √          |                               |
+| INTERFACE |                     |               √               |
+|  PUBLIC   |          √          |               √               |
+
+
+
+这是再引入config.h就不会报错了
+
+![image-20230206145529693](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/202302061455747.png)
+
+
+
+## target_link_libraries
+
+```
+target_link_libraries(<target> ... <item>... ...)
+```
+
+
+
+## add_library
+
+使用指定的源文件将库添加到项目中。
+
+```cmake
+add_library(<name> [STATIC | SHARED | MODULE]
+            [EXCLUDE_FROM_ALL]
+            [<source>...])
+ 
+```

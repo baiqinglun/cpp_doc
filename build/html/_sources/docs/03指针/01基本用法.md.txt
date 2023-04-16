@@ -1,0 +1,20 @@
+# 基本用法
+
+```c
+double dval;
+double* pd = &dval;
+double* pd2 = pd;
+*pd2 = 2.0;
+cout << "dval是"<<dval << endl;
+cout << "dval的地址是"<<&dval << endl;
+cout << "*pd是"<<*pd << endl;
+cout << "pd的地址是"<<&pd << endl;
+cout << "pd本身是"<<pd << endl;
+cout << "pd2是"<<*pd2 << endl;
+```
+dval是2
+dval的地址是0000004D63EFF808
+pd是2
+pd的地址是0000004D63EFF828
+pd本身是0000004D63EFF808
+pd2是2

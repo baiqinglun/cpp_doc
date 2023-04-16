@@ -1,0 +1,47 @@
+# 6.10 类静态成员变量
+> 有时我们需要**有些成员**与**类本身**相关，而与对象无关；
+**声明**
+在声明变量时加上关键字`static`，静态成员变量可以是`public`也可以是`private`
+```c
+class Children()
+{
+public:
+  // father对象被共享
+	static string father;
+  static string getMother(){return mother}
+private:
+  // mother对象被共享
+  static string mother;
+}
+```
+**访问静态成员**
+可以使用作用域的方式直接访问
+```c
+string motherName = Children::getMother();
+```
+**定义静态函数成员**
+和其他的成员函数一样，我们既可以在类的内部也可以在类的外部定义静态成员函数。当在类的外部定义静态成员时，不能重复`static`关键字（类似`explicit`关键字），该关键字只出现在类内部的声明语句：
+类外
+```c
+void Accout::rate(double newRate) {
+    interestRate = newRate;
+}
+```
+**定义静态数据成员**
+1.  类似于全部变量，静态数据成员被定义在任何函数之外，因为一旦它被定义，就将一直存在于程序的整个生命周期中。
+2.  由于静态数据成员不属于类的任何一个对象，所以它们并不是在创建类的对象时被定义的，这意味着它们不是由类的构造函数初始化的。而且一般而言我们不能在类的内部初始化静态成员，而应该在类的外部定义和初始化每个静态数据成员。
+3.  要确保静态数据成员只定义一次，最好是把静态数据成员的定义与其他非内联函数的定义放在同一个文件中。
+**静态成员的类内初始化**
+通常情况下，类的静态成员不应该在类的内部初始化。但是我们可以给静态成员提供`const`整数类型的类内初始值，不过要求静态成员必须是字面值常量类型的`constexpr`
+```c
+class Account {
+ public:
+    static double rate() { return interestRate; }
+    static void rate(double);
+ private:
+    static constexpr int period = 30;  // period是常量表达式
+    double daily_tbl[period];
+};
+// 即使一个常量静态数据成员在类内部被初始化了, 通常情况下也应该在类的外部定义一下该成员
+constexpr int Account::period;
+```

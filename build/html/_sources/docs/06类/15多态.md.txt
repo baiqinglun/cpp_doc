@@ -1,0 +1,446 @@
+# 多态
+## 1、多态的概念
+多态是C++面向对象三大特性之一
+多态分为两类
+- 静态多态：函数重载和运算符重载属于静态多态，复用函数名
+- 动本多态：派生类和虚函数实现运行时多态
+静态多态和动态多态区别：
+- 静态多态的函数地址早绑定——编译阶段确定函数地址
+- 动态多态的函数地址晚绑定——运行阶段确定函数地址
+> 总结
+多态满足条件
+- 有继承关系
+- 子类重写父类中的虚函数
+多态的使用条件
+- 父类指针或引用指向子类对象
+重写：函数返回值 函数名 参数列表 完全一致
+
+## 2、多态原理
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220415121056725.png#crop=0&crop=0&crop=1&crop=1&id=ZPAPv&originHeight=1002&originWidth=2052&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220415121401372.png#crop=0&crop=0&crop=1&crop=1&id=mDiuQ&originHeight=302&originWidth=497&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220415121449966.png#crop=0&crop=0&crop=1&crop=1&id=mzNQn&originHeight=346&originWidth=787&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**重写后**
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220415121206003.png#crop=0&crop=0&crop=1&crop=1&id=u7aH8&originHeight=1002&originWidth=2065&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220415121435062.png#crop=0&crop=0&crop=1&crop=1&id=guCZQ&originHeight=357&originWidth=651&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+> 执行cat的speak()
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220415121302391.png#crop=0&crop=0&crop=1&crop=1&id=WyFLo&originHeight=173&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+## 3、案例：计算器
+**常规**
+```c
+#include<iostream>
+#include<string>
+using namespace std;
+class Calculator
+{
+public:
+	int getResult(string str)
+	{
+		if (str == "+")
+		{
+			return a + b;
+		}
+		else if (str == "-")
+		{
+			return a - b;
+		}
+		else if (str == "*")
+		{
+			return a * b;
+		}
+	}
+	int a;
+	int b;
+};
+void test01()
+{
+	Calculator c;
+	c.a = 10;
+	c.b = 10;
+	cout << c.getResult("+") << endl;
+	cout << c.getResult("-") << endl;
+	cout << c.getResult("*") << endl;
+}
+int main()
+{
+	test01();
+}
+```
+**多态**
+> 先定义计算器抽象类，然后向里面添加功能类（继承抽象类）
+```c
+// 多态 计算器抽象类
+class AbstractCalculator
+{
+public:
+	virtual int getResult()
+	{
+		return 0;
+	}
+	int a;
+	int b;
+};
+// 加法类
+class Add:public AbstractCalculator
+{
+public:
+	int getResult()
+	{
+		return a + b;
+	}
+};
+// 减法类
+class Sub:public AbstractCalculator
+{
+public:
+	int getResult()
+	{
+		return a - b;
+	}
+};
+// 乘法类
+class Mul:public AbstractCalculator
+{
+public:
+	int getResult()
+	{
+		return a * b;
+	}
+};
+```
+**测试**
+定义一个指针指向子类
+```c
+//多态计算器测试
+void test02()
+{
+	AbstractCalculator *c = new Mul;
+	c->a = 10;
+	c->b= 20;
+	cout << c->getResult() << endl;
+}
+```
+
+## 4、纯虚函数
+纯虚函数是一种特殊的虚函数，再某些情况下，基类中不能对虚函数给出有意义的实现，把它声明为纯虚函数；
+<strong style="color:#ffc000;">**纯虚函数只有函数名、参数和返回值，没有函数体，具体的实现留给派生类去做。**</strong>
+纯虚函数再基类中为派生类保留有一个函数名，一边派生类进行重定义，如果再基类中没有保留函数名字，则无法支持多态。
+语法：`virtual 返回值类型 函数名() = 0；`
+`virtual int getResult() = 0`
+> 这样的类也叫做抽象类，抽象类不能实例化对象，且子类必须重写纯虚函数
+
+## 5、案例：泡茶
+1. 抽象类
+```c
+class AbstractDrinking
+{
+public:
+	// 煮水
+	virtual void Boil() = 0;
+	// 冲泡
+	virtual void Brew() = 0;
+	// 倒入杯中
+	virtual void PourInCup() = 0;
+	// 添加辅料
+	virtual void AddSomething() = 0;
+	//制作
+	void making()
+	{
+		Boil();
+		Brew();
+		PourInCup();
+		AddSomething();
+	}
+};
+```
+**Coffee类**
+```c
+class Coffee :public AbstractDrinking
+{
+public:
+	// 煮水
+	virtual void Boil()
+	{
+		cout << "煮Coffee水" << endl;
+	}
+	// 冲泡
+	virtual void Brew()
+	{
+		cout << "冲泡Coffee水" << endl;
+	}
+	// 倒入杯中
+	virtual void PourInCup()
+	{
+		cout << "Coffee水倒入杯中" << endl;
+	}
+	// 添加辅料
+	virtual void AddSomething()
+	{
+		cout << "添加Coffee辅料" << endl;
+	}
+};
+```
+**制作函数**
+```c
+// 制作函数
+void doWork(AbstractDrinking* abs)
+{
+	abs->making();
+    delete abs;
+}
+```
+**测试**
+```c
+void test01()
+{
+	Coffee *c = new Coffee;
+	doWork(c);
+	delete c;
+	//或者
+	doWork(new Coffee);
+}
+```
+> 这里相当于`AbstractDrinking* abs = new Coffee;`
+
+
+## 6、虚析构和纯虚析构
+1. 多态使用时，如果子类中有属性开辟到堆区，那么父类指针在释放时无法调用到子类的析构代码
+2. 解决方式：将父类中的析构函数改为虚析构或者纯虚析构.
+虚析构和纯虚析构共性：
+-  可以解决父类指针释放子类对象
+-  都需要有具体的函数实现
+虚析构和纯虚析构区别：
+- 如果是纯虚析构，该类属于抽象类，无法实例化对象
+虚析构语法：
+`virtual ~类名(){}`
+纯虚析构语法：
+`virtual ~类名() = 0;`
+`类名::~类名(){}`
+
+
+## 7、案例：计算机
+电脑主要组成部件为CPU（用于计算），显卡（用于显示），内存条（用于存储
+将每个零件封装出抽象基类，并且提供不同的厂商生产不同的零件，例如Intel厂商和Lenovo厂商创建电脑类
+提供让电脑工作的函数，并且调用每个零件工作的接口测试时组装三台不同的电脑进行工作
+**三个零件抽象类**
+```c
+// 抽象的CPU类
+class AbstractCPU
+{
+public:
+	virtual void calculate() = 0;
+};
+// 抽象的显卡类
+class AbstractVedioCard
+{
+public:
+	virtual void view() = 0;
+};
+// 抽象的内存条类
+class AbstractStorage
+{
+public:
+	virtual void storage() = 0;
+};
+```
+**计算机抽象类**
+```c
+// 电脑类
+class Computer
+{
+public:
+	Computer(AbstractCPU *CPU,AbstractVedioCard * VedioCard,AbstractStorage *Storage)
+	{
+		m_CPU = CPU;
+		m_VedioCard = VedioCard;
+		m_Storage = Storage;
+	}
+	void doWork()
+	{
+		m_CPU->calculate();
+		m_VedioCard->view();
+		m_Storage->storage();
+	}
+private:
+	AbstractCPU* m_CPU;
+	AbstractVedioCard* m_VedioCard;
+	AbstractStorage* m_Storage;
+};
+```
+**具体的厂商**
+```c
+//具体的厂商
+class InterCPU :public AbstractCPU
+{
+public:
+	void calculate()
+	{
+		cout << "InterCPU开始计算" << endl;
+	}
+};
+class InterVedioCard :public AbstractVedioCard
+{
+public:
+	void view()
+	{
+		cout << "InterVedioCard开始计算" << endl;
+	}
+};
+class InterStorage :public AbstractStorage
+{
+public:
+	void storage()
+	{
+		cout << "InterStorage开始计算" << endl;
+	}
+};
+```
+**测试**
+```c
+void test01()
+{
+	//第一个零件CPU
+ 	 AbstractCPU *iCPU = new InterCPU;
+	 //第二个零件显卡
+ 	 AbstractVedioCard*iVedioCard = new InterVedioCard;
+	 //第三个零件内存条
+ 	 AbstractStorage*iStorage = new InterStorage;
+	Computer *c = new Computer(iCPU, iVedioCard, iStorage);
+	 c->doWork();
+	 delete c;
+}
+```
+**Computer析构函数**释放堆区中数据
+```c
+~Computer()
+	{
+		if (m_CPU != NULL)
+		{
+			delete m_CPU;
+			m_CPU = NULL;
+		}
+		if (m_VedioCard != NULL)
+		{
+			delete m_VedioCard;
+			m_VedioCard = NULL;
+		}
+		if (m_Storage != NULL)
+		{
+			delete m_Storage;
+			m_Storage = NULL;
+		}
+	}
+```
+
+## 8、运行阶段类型识别
+<strong style="color:#92d050;">dynamic_cast</strong>
+运行阶段类型识别为程序所在运行阶段确定对象的类型，只适用于包含虚函数的类。
+```dynamic_cast```运算符用指向基类的指针来生成派生类的指针，它不能回答“指针指向的是什么类的对象”的问题，但能安全的将对象的地址赋给特定类型的指针。
+西施、韩信、李白都继承自英雄基类，西施中右成员函数show()，调用show函数需要将基类转换成XS类再调用，如果这里不知道i英雄的id也就不能使用```XS* pxs = (XS*)ptr;```进行转换了。
+这里虽然`ptr = new XS;`，ptr仍为Hero对象。
+
+```c++
+#include<iostream>
+using std::cout; using std::string; using std::endl; using std::cin;
+class Hero
+{
+public:
+	virtual void skil1() = 0;
+	virtual void skil2() = 0;
+	virtual void skil3() = 0;
+};
+class XS :public Hero
+{
+public:
+	virtual void skil1()
+	{
+		cout << "西施释放一技能" << endl;
+	}
+	virtual void skil2()
+	{
+		cout << "西施释放二技能" << endl;
+	}
+	virtual void skil3()
+	{
+		cout << "西施释放三技能" << endl;
+	}
+	void show()
+	{
+		cout << "我是大美女" << endl;
+	}
+};
+class HX :public Hero
+{
+public:
+	virtual void skil1()
+	{
+		cout << "韩信释放一技能" << endl;
+	}
+	virtual void skil2()
+	{
+		cout << "韩信释放二技能" << endl;
+	}
+	virtual void skil3()
+	{
+		cout << "韩信释放三技能" << endl;
+	}
+};
+class LB :public Hero
+{
+public:
+	virtual void skil1()
+	{
+		cout << "李白释放一技能" << endl;
+	}
+	virtual void skil2()
+	{
+		cout << "李白释放二技能" << endl;
+	}
+	virtual void skil3()
+	{
+		cout << "李白释放三技能" << endl;
+	}
+};
+int main()
+{
+	int id = 0;
+	cout << "请输入英雄的id(1-西施，2-韩信，3-李白)";
+	cin >> id;
+	// 创建一个英雄空指针
+	Hero* ptr = nullptr;
+	if (id == 1)
+	{
+		ptr = new XS;
+	}
+	else if (id == 2)
+	{
+		ptr = new HX;
+	}
+	else if (id == 3)
+	{
+		ptr = new LB;
+	}
+	if (ptr != nullptr)
+	{
+		ptr->skil1();
+		ptr->skil2();
+		ptr->skil3();
+		if (id == 1)
+		{
+			XS* pxs = (XS*)ptr; // C风格强制转换
+			pxs->show();
+		}
+		delete ptr;
+	}
+	system("pause");
+	return 0;
+}
+```
+
+dynamic_cast语法
+```派生类 = dynamic_cast<派生类类型 *>(基类指针)；```
+1. dynamic_cast只适用于包含虚函数的类；
+2. dynamic_cast可以将培盛磊指针换成基类指针，这种做法没有意义；
+3. dynamic_cast可用于引用，但是，没有与空指针对应的引用值，如果转换请求不正确，会出现bad_cast异常。
+
+![image-20221023224847930](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221023224847930.png)

@@ -1,0 +1,248 @@
+# 1.5 程序流程
+
+1. 顺序结构、选择结构、循环结构
+
+## 1、选择结构
+
+1. if
+2. if...else
+3. if...else if..else if...
+
+```c
+#include<iostream>
+using namespace std;
+
+int main() {
+	int score = 0;
+	cout << "请输入分数" << endl;
+	cin >> score;
+	if (score > 600) {
+		cout << "及格了" << endl;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+
+**顺序计数器**
+
+```c
+#include<iostream>
+
+int main() {
+	int currVal = 0, val = 0;
+	if (std::cin >> currVal) {
+		int cnt = 1;
+		while (std::cin >> val) {
+			if (val == currVal)
+				++cnt;
+			else {
+				std::cout << currVal << " occurs " << cnt << " times" << std::endl;
+				currVal = val;
+				cnt = 1;
+			}
+		}
+		std::cout << currVal << " occurs " << cnt << " times" << std::endl;
+	}
+	return 0;
+}
+```
+
+## 2、三目运算符
+
+1. 做简单的判断；
+2. `a > b ? a : b ;`a比b大则为a，否则为b；
+
+## 3、witch
+
+1. switch选择结构；
+2. switch只能判断整型或者字符型，不能是区间；
+3. switch效率较高；
+
+```c
+#include<iostream>
+using namespace std;
+
+int main() {
+	int score = 0;
+	cout << "请输入分数" << endl;
+	cin >> score;
+	switch (score) {
+		case 10:
+			cout << "经典" << endl;
+			break;
+		case 9:
+			cout << "还行" << endl; 
+			break;
+		default:
+			cout << "不行"<< endl;
+			break;
+	}
+	
+	system("pause");
+	return 0;
+}
+```
+
+## 4、while
+
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/GmU91p2bXekIsBN.jpg#crop=0&crop=0&crop=1&crop=1&id=ssv2m&originHeight=463&originWidth=414&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+1. `while(循环条件){循环结构}`
+
+**while语句**
+
+```c
+int main() {
+	int sum = 0, val = 1;
+	while (val <=10)
+	{
+		sum += val;
+		++val;
+	}
+	std::cout << "Sum of 1 to 10 inclusive is "
+		<< sum << std::endl;
+	return 0;
+}
+```
+
+输出：um of 1 to 10 inclusive is 55
+
+**猜数字**
+
+```c
+#include<iostream>
+using namespace std;
+
+
+int main() {
+	int num = 0;
+	int numRam = rand() % 100 + 1;// 生成1-100的随机数
+	cout << "请输入数字" << endl;
+	cin >> num;
+	while (num != numRam) {
+		if (num > numRam) {
+			cout << "大了" << endl;
+			cin >> num;
+		}
+		else {
+			cout << "小了" << endl;
+			cin >> num;
+		}
+	}
+	cout << "猜对了" << endl;
+	system("pause");
+	return 0;
+}
+```
+
+## 5、do...while
+
+1. `do{ 循环语句 } while { 循环条件 };`
+2. 会先执行一次；
+
+```c
+#include<iostream>
+using namespace std;
+
+int main() {
+	int num = 100;
+	do {
+		int a = 0;
+		int b = 0;
+		int c = 0;
+		a = num / 100;
+		b = num / 10 % 10;
+		c = num % 10;
+		if (a*a*a + b*b*b + c*c*c == num) {
+			cout << "是水仙花数" << num << endl;
+		}
+		num++;
+	} while (num >= 100 && num < 1000);
+	system("pause");
+	return 0;
+}
+```
+
+## 6、for循环
+
+1. `for( 起始表达式； 条件表达式；循环语句 ){ 循环语句 }`
+2. 可以用来读取一组数据；
+
+```c
+#include<iostream>
+using namespace std;
+
+int main() {
+	int a = 0;
+	int b = 0;
+	for (int num = 1; num < 100; num++) {
+		a = num / 10;
+		b = num % 10;
+		if (a == 7 || b == 7 || num % 7 == 0) {
+			cout << "敲桌子" << num << endl;
+		}
+	}
+	system("pause");
+	return 0;
+}
+```
+
+**读取输入不定的输入数据**
+
+```c
+int main() {
+	int sum = 0, value = 0;
+	while (std::cin >> value)
+	{
+		sum += value;
+	}
+	std::cout << "Sum is: " << sum << std::endl;
+	return 0;
+}
+```
+
+输入：1 2 3 4 5 6 8 da
+输出：Sum is: 29
+
+> 或者ctrl+z，再按Enter，表示输入结束
+
+
+输入：1 2 3 4^z
+输出：Sum is: 10
+
+**乘法口诀**
+
+```c
+#include<iostream>
+using namespace std;
+
+int main() {
+	for (int i = 1; i < 10; i++) {
+		for (int j = 1; j <= i; j++) {
+			cout << j <<"*"<<i <<"=" <<i*j<<"\t";
+		}
+		cout << endl;
+	}
+	system("pause");
+	return 0;
+}
+```
+
+## 7、break和continue
+
+1. break跳出循环体；
+2. continue，执行到本行不往下执行，但是循环会继续，只是跳出本次执行块；
+
+## 8、goto
+
+1. 需要一个表示符，标识符命名规范同变量；
+2. 标识符一般大写；
+
+```c
+goto FLAG;
+
+FLAG:
+cout << "跳转执行到这" << endl;
+```

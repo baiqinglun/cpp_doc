@@ -1,0 +1,35 @@
+# 6.11 静态成员函数
+> 所有对象共享同一个函数
+>
+> 静态成员函数只能访问静态成员变量
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220405130711934.png#crop=0&crop=0&crop=1&crop=1&id=x0sRO&originHeight=744&originWidth=1330&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**静态成员函数访问方式**
+通过对象访问和通过作用域访问
+```c
+#include<iostream>
+using namespace std;
+class Person
+{
+public:
+	static void f()
+	{
+		cout << "f()被调用了！" << endl;
+	}
+};
+// 1.通过对象访问
+void test01()
+{
+	Person p;
+	p.f();
+}
+// 2.通过作用域访问
+void test02()
+{
+	Person::f();
+}
+int main()
+{
+	test01();
+	test02();
+}
+```

@@ -1,0 +1,167 @@
+# 6.14 继承
+继承是面向对象三大特性之一。
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220405203800618.png#crop=0&crop=0&crop=1&crop=1&id=VllcF&originHeight=505&originWidth=1057&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+继承语法：`class 子类 : 继承方式 父类`
+
+## 1、继承方式
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220405204211371.png#crop=0&crop=0&crop=1&crop=1&id=Aj0Km&originHeight=852&originWidth=1187&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+> 不管子类以什么方式继承都不能继承父类中的私有属性。
+## 2、继承中的对象模型
+父亲中所有成员的静态变量都会继承到子类中去，只不过权限的限制访问不到。
+`Base`类中有3个int类型，`Child1`中有一个int类型，`Child1`继承`Base`，则大小为**16字节**。
+```c
+#include<iostream>
+using namespace std;
+class Base
+{
+public:
+	int a;
+protected:
+	int b;
+private:
+	int c;
+};
+class Child1 : public Base
+{
+public:
+	int d;
+};
+void test01()
+{
+	Child1 c;
+	cout << "c的字节大小 " << sizeof(c) << endl;//16
+}
+int main()
+{
+	test01();
+}
+```
+**在命令行中查看对象模型**
+打开工具
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220405210646202.png#crop=0&crop=0&crop=1&crop=1&id=QcynT&originHeight=517&originWidth=1133&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+进入盘符
+```
+E:
+```
+进入文件夹
+```
+cd E:\04学习课程\08_编程学习\C++\Project\0405继承
+```
+对象模型查看
+```
+cl /d1 reportSingleClassLayoutChild1 "01继承中的对象模型.cpp"
+```
+其中`cl`中为字母l，`d1`中为数字1
+## 3、继承的构造和析构
+父类先生成后销毁
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220407223852205.png#crop=0&crop=0&crop=1&crop=1&id=jEHs4&originHeight=766&originWidth=1468&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+**代码**
+```c
+#include<iostream>
+using namespace std;
+class Base
+{
+public:
+	Base()
+	{
+		cout << "Base的构造函数" << endl;
+	}
+	~Base()
+	{
+		cout << "Base的析构函数" << endl;
+	}
+};
+class Child : public Base
+{
+public:
+	Child()
+	{
+		cout << "Child的构造函数" << endl;
+	}
+	~Child()
+	{
+		cout << "Child的析构函数" << endl;
+	}
+};
+void test01()
+{
+	Child c;
+}
+int main()
+{
+	test01();
+}
+```
+## 4、同名成员的访问
+子类成员和子类中的成员同名
+直接访问访问的是子类的成员，也就是本类的成员，想要访问父类的需要加作用域
+```c
+class Base
+{
+public:
+	int a = 20;
+};
+class Child : public Base
+{
+public:
+	int a = 10;
+};
+```
+访问子类
+```c
+Child c;
+cout << c.a << endl;
+```
+访问父类
+```c
+Child c;
+cout << c.Base::a << endl;
+```
+> 上述举例为同名属性，同名函数同样如此；但如果子类中有和父类同名的成员函数，则会隐藏父类中全部同名成员函数；
+## 5、同名静态成员处理
+访问方式和上一章的同名成员一样，访问子类的直接就能访问，访问父类的需要加作用域。
+但是静态函数有两种读法，按照对象的方式和上述规则一样，按照类名的方式有区别
+**对象方式**
+```c
+Child c;
+cout << "Child下的a " << c.a << endl;
+cout << "Base下的a " << c.Base::a << endl;
+c.fn();
+```
+**类名方式**
+```c
+cout << "Child下的a " << Child::a << endl;
+cout << "Base下的a " << Child::Base::a<< endl;
+cout << "Base下的a " << Base::a<< endl;
+```
+**类代码**
+```c
+class Base
+{
+public:
+	static int a;
+	static void fn()
+	{
+		cout << "Base下的a " << a << endl;
+	}
+};
+int Base::a = 20;
+class Child : public Base
+{
+public:
+	static int a;
+};
+int Child::a = 10;
+```
+## 6、多继承
+**一个儿子继承两个爸爸**
+`class Son : public Father1,public Father2 {}`
+> 同名成员也需要加作用域
+## 7、菱形继承
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220407232030713.png#crop=0&crop=0&crop=1&crop=1&id=VTStL&originHeight=412&originWidth=499&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+1. 羊继承了动物的数据，驼同样继承了动物的数据，当草泥马使用数据时，就会产生二义性。
+2. 草泥马继承自动物的数据继承了两份，其实我们应该清楚，这份数据我们只需要一份就可以。
+羊上面有个age属性，驼上面有个age属性，则会出现二份数据，而我们只需要一份；可以采用虚继承
+`class Yang:virtual public Animal {}`
+**加上virtual后**
+![](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220407232719879.png#crop=0&crop=0&crop=1&crop=1&id=yVzqg&originHeight=1044&originWidth=2132&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)

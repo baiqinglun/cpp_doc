@@ -1,0 +1,32 @@
+# 结构体做函数参数
+1.  将结构体作为参数传递到函数里； 
+2.  值传递,不会修改原对象值； 
+3.  地址传递，会改变原对象值； 
+
+```c++
+#include<iostream>
+using namespace std;
+
+// 定义学生的结构体
+struct Student {
+	string name;
+	int age;
+	double score;
+};
+
+// 值传递,不会修改原对象值
+void printStudent(struct Student s) {
+	cout << "1.打印信息：" << s.name << "\t" << s.age << "\t" << s.score << endl;
+};
+// 地址传递，会改变原对象值
+void printStudent(struct Student *p) {
+	cout << "2.打印信息：" << p->name << "\t" << p->age << "\t" << p->score << endl;
+};
+
+int main() {
+	struct Student s = {"张三",18,90};
+	printStudent(s);
+	printStudent(&s);
+
+}
+```

@@ -1,0 +1,48 @@
+# 6.4 成员属性私有
+1. 可以自己控制成员的读写权限；
+2. 对于写权限可以检测数据的有效性；
+```c
+#include<iostream>
+using namespace std;
+class Student
+{
+private:
+	string name; //可读写
+	int age; //可读
+	string lover; //可写
+public:
+	void setName(string name)
+	{
+		this->name = name;
+	}
+	string getName()
+	{
+		return this->name;
+	}
+	int getAge()
+	{
+		return this->age;
+	}
+	void setAge(int age)
+	{
+		if (age < 0 || age>150)
+		{
+			cout << "年龄不在合理范围！" << endl;
+			return;
+		}
+		this->age = age;
+	}
+	void setLover(string lover)
+	{
+		this->lover = lover;
+	}
+};
+int main()
+{
+	Student s1;
+	s1.setName("张三");
+	s1.setLover("翠花");
+	s1.setAge(20);
+	cout << "\t" << s1.getName() << "\t" << s1.getAge() << endl;
+}
+```

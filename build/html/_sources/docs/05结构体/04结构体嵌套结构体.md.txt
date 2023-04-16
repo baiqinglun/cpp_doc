@@ -1,0 +1,41 @@
+# 结构体嵌套结构体
+
+1. 结构体1作为结构体2的成员变量；
+2. 结构体1应该定义在结构体2前面；
+3. 结构体里结构体赋值`t.stu.score = 80;`或者`t.stu = { "张三",20,100 };`
+
+```c
+#include<iostream>
+using namespace std;
+
+// 定义学生的结构体
+struct Student {
+	string name;
+	int age;
+	double score;
+};
+
+// 定义老师的结构体
+struct Teacher {
+	int id;
+	string name;
+	int age;
+	//将另一个结构体作为本结构体的成员
+	struct Student stu;
+};
+
+
+int main() {
+	Teacher t;
+	t.id = 01;
+	t.name = "老师1";
+	t.age = 45;
+	t.stu.name = "学生1";
+	t.stu.age = 18;
+	t.stu.score = 80;
+	//或者
+	t.stu = { "张三",20,100 };
+
+	cout << t.stu.name << endl;
+}
+```

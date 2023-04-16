@@ -1,0 +1,58 @@
+# 1.7 枚举
+**<u>创建常量的一种方式</u>**
+
+<strong style="color:#00b050;">创建常量的方法：</strong>
+
+1. 宏常量，用预处理指令#define创建
+2. 用const关键字创建；
+3. 枚举
+
+<strong style="color:#00b050;">注意事项：</strong>
+
+1. 枚举创建的变量取值只能在枚举范围之内；
+2. 枚举的作用域与变量的作用域相同；
+3. 可以设置枚举量的值
+4. 整型强制转为枚举量：```Colors cc = Colors(1);```
+
+打
+
+
+
+```c++
+#include<iostream>
+using std::string; using std::cout; using std::endl;
+
+int main()
+{
+	enum Colors
+	{
+		red=0,yellow,blue,other
+	};
+
+	// 创建一个枚举变量，只能为Colors中的一个
+	Colors color = red;
+
+	switch (color) // color是整数，可以用来switch
+	{
+		case red: // red是整型常量，可用来case
+			cout << "红色" << endl;
+			break;
+		case yellow:
+			cout << "黄色" << endl;
+			break;
+		case blue:
+			cout << "蓝色" << endl;
+			break;
+		case other:
+			cout << "红色" << endl;
+			break;
+		default:
+			cout << "未知" << endl;
+			break;
+	}
+
+	system("pause");
+	return 0;
+}
+```
+

@@ -1,0 +1,131 @@
+# 5.7 案例
+## 结构体案例1
+
+1. 注意字符串字面量和字符相加，使用+=比较好；
+2. 随机数种子；
+3. 判断数据类型`typeid(i).name();`
+
+```c
+#include<iostream>
+using namespace std;
+#include<string>
+#include<ctime>
+
+// 定义学生的结构体
+struct Student {
+	string name;
+	int score;
+};
+
+
+// 老师的结构体
+struct Teacher {
+	string name;
+	Student stuArray[5];
+};
+
+
+// 给老师和学生赋值函数
+void allocateSpace(struct Teacher teaArray[], int len) {
+	string nameSpace = "ABCDE";
+	for (int i = 0; i < len; i++) {
+		string tname = "Teacher_" ;
+		tname += nameSpace[i];
+		teaArray[i].name =  tname;
+		// 学生赋值
+		for (int j= 0; j < 5; j++) {
+			string sname = "Student_" ;
+			sname += +nameSpace[j];
+			int sscore = rand() % 61 + 40;//40~100
+			teaArray[i].stuArray[j].name = sname;
+			teaArray[i].stuArray[j].score = sscore;
+		}
+	}
+}
+
+void printFor(struct Teacher teaArray[], int len) {
+	for (int i = 0; i < len; i++) {
+		cout << teaArray[i].name << endl;
+		for (int j = 0; j < 5; j++) {
+			cout << "\t" << teaArray[i].stuArray[j].name << "\t" << teaArray[i].stuArray[j].score << endl;
+		}
+	}
+}
+
+int main() {
+
+	// 随机数种子
+	srand((unsigned int)time(NULL));
+
+	// 创建3名老师
+	struct Teacher teaArray[3];
+
+	// 给老师的学生赋值
+	int len = sizeof(teaArray) / sizeof(teaArray[0]);
+	allocateSpace(teaArray, len); //数组本身就是地址传递
+	printFor(teaArray, len);
+
+}
+```
+
+## 2、结构体案例2
+
+1. 冒泡排序；
+2. 临时变量temp，类型为hero；
+
+```c
+#include<iostream>
+#include<string>
+using namespace std;
+
+// 设计结构体
+struct hero {
+	string name;
+	int age;
+	string sex;
+};
+
+// 冒泡排序函数
+void rink(struct hero heroArray[],int len) {
+	for (int i = 0; i < len-1; i++) {
+		for (int j = 0; j < len - i - 1; j++) {
+			if (heroArray[j].age > heroArray[j+1].age) {
+				struct hero temp = heroArray[j];
+				heroArray[j] = heroArray[j+1];
+				heroArray[j+1] = temp;
+			}
+		}
+	}
+}
+
+// 打印输出
+void printHero(struct hero heroArray[], int len) {
+	for (int i = 0; i < len; i++) {
+		cout << heroArray[i].name << "\t" << heroArray[i].age << "\t" << heroArray[i].sex << endl;
+	}
+
+}
+
+
+int main() {
+
+	// 创建英雄
+	struct hero heroArray[5] = {
+		{"刘备",23,"男"},
+		{"关羽",22,"男"},
+		{"张飞",20,"男"},
+		{"赵云",21,"男"},
+		{"貂蝉",19,"男"},
+	};
+
+	// 数组排序
+	int len = sizeof(heroArray) / sizeof(heroArray[0]);
+	rink(heroArray, len);
+
+	// 打印输出
+	printHero(heroArray, len);
+
+	system("pause");
+	return 0;
+}
+```

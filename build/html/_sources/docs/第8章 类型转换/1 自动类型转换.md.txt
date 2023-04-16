@@ -1,0 +1,32 @@
+# 8.1 自动类型转换
+
+C++可以进行自动类型转换盲从更大的数转为小的数会可能造成精度缺失。
+
+C++不能自动转换不兼容的类型，下面的语句时非法的
+
+```c++
+int *ptr = 8;
+```
+
+不能自动转换时，可以使用强制类型转换
+
+```c++
+int *p = (int*)8;
+```
+
+ 
+
+将构造函数作为自动类型转换函数
+
+![image-20221023215456905](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221023215456905.png)
+
+![image-20221023215606928](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221023215606928.png)
+
+使用**explicit**关键字可用于关闭这种特性，再使用隐式转换时就会报错。
+
+![image-20221023220058069](http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20221023220058069.png)
+
+
+
+
+

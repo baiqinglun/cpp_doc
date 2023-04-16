@@ -1,0 +1,58 @@
+# 6.1 封装
+
+封装的意义：
+- 将属性和行为作为一个整体，表现在生活中的事物；
+- 将属性和行为加以权限控制；
+**设计一个圆类**
+```c
+const double PI = 3.14;
+// 设计一个圆类
+class Circle
+{
+public:
+	int m_r;
+	double calculateZC()
+	{
+		return 2 * PI * m_r;
+	}
+};
+int main()
+{
+	//创建一个对象
+	Circle c1;
+	c1.m_r = 10;
+	cout<<"圆的周长为"<< c1.calculateZC() <<endl;
+}
+```
+**学生案例**
+1. 可以使用`setName`函数对`name`进行赋值；
+2. 可用`name = cname`，也可以使用`this->name = cname`；
+```c
+#include<iostream>
+using namespace std;
+class Student
+{
+public:
+	string name;
+	int id;
+	void showStudent()
+	{
+		cout << "学生的信息为:" << endl << "\t" << name << "\t" << id << endl;
+	}
+	void setName(string cname)
+	{
+		this->name = cname;
+		//name = cname;
+	}
+};
+int main()
+{
+	Student s1,s2;
+	s1.id = 01;
+	s1.name = "张三";
+	s1.showStudent();
+	s2.id = 02;
+	s2.setName("李四");
+	s2.showStudent();
+}
+```

@@ -1,0 +1,161 @@
+# 案例
+
+## 1、立方体
+1. 创建一个长方体类，将属性设为private，其他成员函数设置为public；
+2. 分别通过全局函数和成员函数的方法判断两个立方体是否相等；
+3. 在设置判断函数时，最好使用引用进行接收（地址传递），节省内存；
+```c
+#include<iostream>
+using namespace std;
+class Cube {
+private:
+	int m_W;
+	int m_L;
+	int m_H;
+public:
+	void setL(int l) {
+		m_L = l;
+	}
+	int getL() {
+		return m_L;
+	}
+	void setW(int w) {
+		m_W = w;
+	}
+	int getW() {
+		return m_W;
+	}
+	void setH(int h) {
+		m_H = h;
+	}
+	int getH() {
+		return m_H;
+	}
+	bool isSame(Cube &c) {
+		if (m_L == c.getL() && m_W == c.getW() && m_H == c.getH()) {
+			return true;
+		}
+		return false;
+	}
+};
+bool isSame(Cube& c1,Cube &c2) {
+	if (c1.getL() == c2.getL() && c1.getW() == c2.getW() && c1.getH() == c2.getH()) {
+		return true;
+	}
+	return false;
+}
+int main() {
+	Cube c1, c2;
+	c1.setW(10);
+	c1.setL(10);
+	c1.setH(10);
+	c2.setW(10);
+	c2.setL(10);
+	c2.setH(10);
+	bool res1 = isSame(c1, c2);
+	if (res1) {
+		cout << "相同" << endl;
+	}
+	else {
+		cout << "不相同" << endl;
+	}
+	bool res2 = c1.isSame(c2);
+	if (res2) {
+		cout << "相同" << endl;
+	}
+	else {
+		cout << "不相同" << endl;
+	}
+}
+```
+![](https://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220330222128350.png#crop=0&crop=0&crop=1&crop=1&id=ZFdr7&originHeight=1021&originWidth=2000&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+## 2、点和圆
+1. 创建一个点和一个圆，判断圆和点的相对位置；
+2. class类的嵌套，一个类作为另一个类的属性；
+```c
+#include<iostream>
+using namespace std;
+class Point
+{
+public:
+	void setCoor(int x,int y)
+	{
+		m_x = x;
+		m_y = y;
+	}
+	int getCoorX()
+	{
+		return m_x;
+	}
+	int getCoorY()
+	{
+		return m_y;
+	}
+private:
+	int m_x;
+	int m_y;
+};
+class Circle
+{
+public:
+	void setCenter(Point p)
+	{
+		m_Center = p;
+	}
+	void setR(int r) {
+		m_R = r;
+	}
+	int getR()
+	{
+		return m_R;
+	}
+	Point getCenter()
+	{
+		return m_Center;
+	}
+private:
+	int m_R;
+	Point m_Center;
+};
+// 判断圆和点的关系
+void estRel(Point &p,Circle &c)
+{
+	//计算两点距离的平方
+	int dis;
+	dis = (p.getCoorX() - c.getCenter().getCoorX()) * (p.getCoorX() - c.getCenter().getCoorX())
+		+ (p.getCoorY() - c.getCenter().getCoorY()) * (p.getCoorY() - c.getCenter().getCoorY());
+	//计算半径的平方
+	int rr = c.getR() * c.getR();
+	//判断
+	if (dis > rr) 
+	{
+		cout << "点在圆外" << endl;
+	}
+	else if(dis==rr)
+	{
+		cout << "点在圆上" << endl;
+	}
+	else
+	{
+		cout << "点在圆内" << endl;
+	}
+}
+int main()
+{
+	//创建一个圆
+	Circle c;
+	//创建一个点
+	Point p;
+	//创建圆心
+	Point c_center;
+	//点位置坐标
+	p.setCoor(2, 4);
+	c_center.setCoor(0, 0);
+	//圆设置
+	c.setCenter(c_center);
+	c.setR(2);
+	//判断
+	estRel(p, c);
+}
+```

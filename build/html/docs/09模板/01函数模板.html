@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>函数模板 &mdash; ddemo v1.0 文档</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="类模板" href="02%E7%B1%BB%E6%A8%A1%E6%9D%BF.html" />
+    <link rel="prev" title="模板" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/index.html">基础语法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/01%E5%8F%98%E9%87%8F%E5%B8%B8%E9%87%8F.html">变量与常量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/02%E5%85%B3%E9%94%AE%E5%AD%97.html">关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/03%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html">数据类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/04%E8%BF%90%E7%AE%97%E7%AC%A6.html">运算符</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/05%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B.html">程序流程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/06%E5%85%B1%E5%90%8C%E4%BD%93.html">共同体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/07%E6%9E%9A%E4%B8%BE.html">枚举</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../02%E5%BC%95%E7%94%A8/index.html">引用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../02%E5%BC%95%E7%94%A8/01%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html">基本使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../03%E6%8C%87%E9%92%88/index.html">指针</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../03%E6%8C%87%E9%92%88/01%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.html">基本用法</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/index.html">函数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/01%E5%87%BD%E6%95%B0%E9%BB%98%E8%AE%A4%E5%80%BC.html">函数默认值</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/02%E5%87%BD%E6%95%B0%E5%8D%A0%E4%BD%8D%E5%8F%82%E6%95%B0.html">函数占位参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/03%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD.html">函数的重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/04%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.html">函数重载注意事项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04%E5%87%BD%E6%95%B0/05%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0.html">内联函数</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/index.html">结构体</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/01%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8.html">基本使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/02%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84.html">结构体数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/03%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88.html">结构体指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/04%E7%BB%93%E6%9E%84%E4%BD%93%E5%B5%8C%E5%A5%97%E7%BB%93%E6%9E%84%E4%BD%93.html">结构体嵌套结构体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/05%E7%BB%93%E6%9E%84%E4%BD%93%E5%81%9A%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0.html">结构体做函数参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/06%E7%BB%93%E6%9E%84%E4%BD%93const.html">结构体const</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/07%E6%A1%88%E4%BE%8B.html">案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../05%E7%BB%93%E6%9E%84%E4%BD%93/08%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E9%93%BE%E8%A1%A8.html">实现简单链表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../06%E7%B1%BB/index.html">类</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/01%E5%B0%81%E8%A3%85.html">封装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/02%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90.html">访问权限</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/03struct%E5%92%8Cclass.html">struct和class区别</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/04%E6%88%90%E5%91%98%E5%B1%9E%E6%80%A7%E7%A7%81%E6%9C%89.html">成员属性私有</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/05%E6%A1%88%E4%BE%8B.html">案例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/06%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84.html">构造和析构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/07%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D.html">深拷贝与浅拷贝</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/08%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8.html">初始化列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/09%E7%B1%BB%E4%BD%9C%E4%B8%BA%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.html">类作为成员变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/10%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F.html">类静态成员变量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/11%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0.html">静态成员函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/12%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%E5%92%8Cthis%E6%8C%87%E9%92%88.html">对象模型和this指针</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/13%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html">运算符重载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/14%E7%BB%A7%E6%89%BF.html">继承</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../06%E7%B1%BB/15%E5%A4%9A%E6%80%81.html">多态</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../07%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/index.html">容器存储</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../07%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/01%E6%95%B0%E7%BB%84.html">数组</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/02Vector.html">Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/03List.html">list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/04%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8.html">关联容器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../07%E5%AE%B9%E5%99%A8%E5%AD%98%E5%82%A8/05%E5%93%88%E5%B8%8C%E8%A1%A8.html">哈希表</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">类型转换</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/01%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.html">自动类型转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/02%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0.html">转化函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/03static_cast.html">static_cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/04const_cast.html">const_cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/05reinterpret_cast.html">reinterpret_cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../08%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/06dynamic_cast.html">dynamic_cast</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">模板</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">函数模板</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02%E7%B1%BB%E6%A8%A1%E6%9D%BF.html">类模板</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../10%E5%85%B3%E9%94%AE%E5%AD%97/index.html">关键字</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../10%E5%85%B3%E9%94%AE%E5%AD%97/01friend.html">关键字friend</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/index.html">内存分配</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/01%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.html">内存分配</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/02%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E5%89%8D.html">程序运行前</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/03%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E5%90%8E.html">程序运行后</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/04new%E5%85%B3%E9%94%AE%E5%AD%97.html">new关键字</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../11%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/05%E5%A0%86%E5%92%8C%E6%A1%9F%E6%AF%94%E8%BE%83.html">堆和栈的比较</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">文件读取</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/01%E5%86%99%E5%85%A5%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6.html">写文本文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/02%E8%AF%BB%E5%8F%96%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6.html">读取文本文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/03%E5%86%99%E5%85%A5%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6.html">写入二进制文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../12%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/04%E8%AF%BB%E5%8F%96%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6.html">读取二进制文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../13C%2B%2B11%E7%89%B9%E6%80%A7/index.html">c++11特性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../13C%2B%2B11%E7%89%B9%E6%80%A7/01%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html">移动语义</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../14%E5%85%B6%E4%BB%96/index.html">其他</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../14%E5%85%B6%E4%BB%96/01test.html">test</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ddemo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">模板</a></li>
+      <li class="breadcrumb-item active">函数模板</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/09模板/01函数模板.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>函数模板<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h1>
+<ol class="simple">
+<li><p>泛型编程，主要利用的就是模板；</p></li>
+<li><p>函数模板和类模板；</p></li>
+</ol>
+<section id="id2">
+<h2>1、函数模板的语法<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<ol class="simple">
+<li><p>建立一个通用的函数，其函数返回值类型和形参类型可以不具体指定，用一个<strong>虚拟的类型</strong>代表；</p></li>
+<li><p>语法：</p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="n">函数声明或定义</span>
+</pre></div>
+</div>
+<p>解释：</p>
+<ul class="simple">
+<li><p>template –声明创建模板；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typename</span></code> –表示其后面的符号是一种数据类型，可以用class代替；</p></li>
+<li><p>T –通用数据类型，名称可以代替，通常为大写字母；</p></li>
+</ul>
+<ol class="simple">
+<li><p>两个数据交换函数.
+<strong>正常写法</strong></p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 两个整型的数据交换</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">exchangeInt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">	</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">	</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 两个浮点型的数据交换</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">exchangeDouble</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">	</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">	</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//测试：两个自定义函数的数据交换</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">test01</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">	</span><span class="n">exchangeInt</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.1</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20.1</span><span class="p">;</span>
+<span class="w">	</span><span class="n">exchangeDouble</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;c=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; d=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>函数模板(自动识别类型)</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 函数模板</span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="c1">//声明模板</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">myExchange</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">T</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">	</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">	</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//测试：函数模板的数据交换</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">test02</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">// 整型</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">	</span><span class="n">myExchange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="c1">// 浮点型</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.1</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20.1</span><span class="p">;</span>
+<span class="w">	</span><span class="n">myExchange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;c=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; d=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="c1">// 字符串</span>
+<span class="w">	</span><span class="n">string</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;我是老大&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">string</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;我是老二&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">myExchange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;e=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; f=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>函数模板(自动识别类型)</strong>
+调用时</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">myExchange</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 函数模板</span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">typename</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="c1">//声明模板</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">myExchange</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">T</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">	</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">	</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//测试：函数模板的数据交换</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">test02</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="c1">// 整型</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">	</span><span class="n">myExchange</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; b=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="c1">// 浮点型</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.1</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20.1</span><span class="p">;</span>
+<span class="w">	</span><span class="n">myExchange</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;c=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; d=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">	</span><span class="c1">// 字符串</span>
+<span class="w">	</span><span class="n">string</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;我是老大&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">string</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;我是老二&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">myExchange</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;e=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; f=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>2、函数模板注意事项<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<ol class="simple">
+<li><p>自动类型推到必须导出一致的数据类型T，才可以使用；
+<img alt="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220427192036745.png#crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;id=qDepl&amp;originHeight=515&amp;originWidth=1126&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" src="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220427192036745.png#crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;id=qDepl&amp;originHeight=515&amp;originWidth=1126&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" /></p></li>
+<li><p>模板必须能确定出来T的数据类型，才可以使用；
+<img alt="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220427192230674.png#crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;id=Zm7NC&amp;originHeight=809&amp;originWidth=1308&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" src="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220427192230674.png#crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;id=Zm7NC&amp;originHeight=809&amp;originWidth=1308&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" />
+解决方法：显示指定类型</p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">myExchange1</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>3、函数模板案例<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<p>案例描述：</p>
+<ul class="simple">
+<li><p>利用函数模板封装一个排序函数，可以对不同数据类型数组进行排序；</p></li>
+<li><p>排序规则从大到小，排序算法为选择排序；</p></li>
+<li><p>分别利用char数据和int数据进行测试；
+模板</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 交换函数模板</span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">myExchange</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">T</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">	</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">	</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 排序模板</span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">mySort</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">arr</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">		</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">		</span><span class="p">{</span>
+<span class="w">			</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">max</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">			</span><span class="p">{</span>
+<span class="w">				</span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">			</span><span class="p">}</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">max</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+<span class="w">		</span><span class="p">{</span>
+<span class="w">			</span><span class="n">myExchange</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">max</span><span class="p">],</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// 打印数组模板</span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">printArray</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">arr</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>测试</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">test01</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">charArr</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abcdfa&quot;</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">charArr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">);</span>
+<span class="w">	</span><span class="n">mySort</span><span class="p">(</span><span class="n">charArr</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printArray</span><span class="p">(</span><span class="n">charArr</span><span class="p">,</span><span class="n">num</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">test02</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">intArr</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">};</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">intArr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+<span class="w">	</span><span class="n">mySort</span><span class="p">(</span><span class="n">intArr</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printArray</span><span class="p">(</span><span class="n">intArr</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>4、普通函数和函数模板的区别<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<ol class="simple">
+<li><p>普通函数可以发生自动类型转换；</p></li>
+<li><p>函数模板调用时，如果利用自动数据类型转换，不会发生隐式类型转换；</p></li>
+<li><p>如果利用显示指定类型的方式，可以发生隐式类型转换；
+<strong>测试1：</strong></p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 普通函数</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">myAdd01</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">test01</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myAdd01</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>输出为109，发生了隐式类型转换。
+<strong>测试2：</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="n">T</span><span class="w"> </span><span class="n">myAdd02</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">test02</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myAdd02</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">//错误：</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220427195621520.png#crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;id=al6Io&amp;originHeight=494&amp;originWidth=967&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" src="http://test-123456-md-images.oss-cn-beijing.aliyuncs.com/img/image-20220427195621520.png#crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;id=al6Io&amp;originHeight=494&amp;originWidth=967&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;status=done&amp;style=none&amp;title=" />
+<strong>测试3：</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="n">T</span><span class="w"> </span><span class="n">myAdd02</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">test02</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myAdd02</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">c</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// 指定类型之后就可以</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>5、普通函数与函数模板的调用规则<a class="headerlink" href="#id6" title="此标题的永久链接"></a></h2>
+<p>调用规则：</p>
+<ol class="simple">
+<li><p>如果两个函数都可以实现，则优先调用<strong>普通函数</strong>；</p></li>
+<li><p>可以通过空模板参数列表来强制调用函数模板；</p></li>
+<li><p>函数模板可以重载；</p></li>
+<li><p>如果函数模板可以产生更好的匹配，优先调用函数模板；
+<strong>测试1：</strong></p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;我是函数模板1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;我是普通函数1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">test01</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">	</span><span class="n">f1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// 输出：我是普通函数1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>若普通函数只有声明没有实现则报错；
+<strong>测试2：</strong></p>
+</div></blockquote>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// 可以通过空模板参数列表来强制调用函数模板；</span>
+<span class="n">f1</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>测试3：</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;我是函数模板1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;我是函数模板2&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">f1</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>测试4：</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;我是函数模板1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;我是普通函数1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;b&#39;</span><span class="p">;</span>
+<span class="n">f1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>会调用函数模板，因为编译器觉得char还要转换成int，所以干脆直接函数模板；</p>
+</section>
+<section id="id7">
+<h2>6、函数模板的局限性<a class="headerlink" href="#id7" title="此标题的永久链接"></a></h2>
+<ol class="simple">
+<li><p>为某一个类型进行具体化操作；</p></li>
+<li><p>主要是使用调用规则4，优先使用更好的匹配；</p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">myCompare</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">	</span><span class="k">else</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 利用具体化Person的版本实现代码,具体化优先使用</span>
+<span class="n">template</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">myCompare</span><span class="p">(</span><span class="n">Person</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">Person</span><span class="o">&amp;</span><span class="w"> </span><span class="n">p2</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">age</span><span class="p">)</span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="k">else</span>
+<span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">test01</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">Person</span><span class="w"> </span><span class="n">p1</span><span class="p">(</span><span class="s">&quot;张三&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">);</span>
+<span class="w">	</span><span class="n">Person</span><span class="w"> </span><span class="n">p2</span><span class="p">(</span><span class="s">&quot;张三&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">);</span>
+<span class="w">	</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myCompare</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="index.html" class="btn btn-neutral float-left" title="模板" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="02%E7%B1%BB%E6%A8%A1%E6%9D%BF.html" class="btn btn-neutral float-right" title="类模板" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2023, db.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
